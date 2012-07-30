@@ -1,0 +1,338 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================
+ HEADER
+============================================= */
+
+#header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 62px;
+  padding: 4px;
+}
+
+#helpUs {
+  float: right;
+  padding: 10px;
+  color: yellow;
+}
+/* DATE ------------------ */
+#date-select a {
+  display: block;
+  float: left;
+  height: 25px;
+  line-height: 25px;
+  margin-right: 4px;
+  padding: 4px;
+}
+
+
+/* ==========================================
+ BLOC
+============================================= */
+
+#bloc {
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  right: 0px;
+  bottom: 20px;
+}
+
+/* ==========================================
+ BLOC - gauche 
+============================================= */
+
+#bloc-carte {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 45%;
+  bottom: 0px;
+}
+
+#bloc-carte-haut {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 4px;
+  height: 30px;
+}
+
+#bloc-carte-carte {
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  right: 5px;
+  bottom: 90px;
+}
+
+#bloc-carte-bas {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 90px;
+}
+
+
+#bloc-carte-haut a {
+  padding: 3px;
+}
+
+#bloc-carte-haut-hour {
+  float: right;
+}
+
+#select-param-menu {
+  position: absolute;
+  left: 5px;
+  top: 30px;
+  width: 350px;
+  z-index: 10;
+  display: none;
+}
+
+#param-categorie {
+  width: 120px;
+}
+#param-list {
+  float: right;
+  width: 230px;
+}
+
+#param-categorie a, #param-list a  {
+  display: block;
+  padding: 10px;
+}
+
+#select-hour-menu {
+  position: absolute;
+  right: 5px;
+  top: 30px;
+  width: 350px;
+  z-index: 10;
+}
+
+#hour-slider {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 5px;
+  top: -2px;
+}
+#hour-slider-handle {
+  display: block;
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 10px;
+  width: 14px;
+  margin: 0 0 0 -7px;
+  padding: 0px !important;
+}
+
+#carte-zoom {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1000;
+}
+
+#carte-zoom a{
+  display: block;
+  height: 25px;
+  width: 25px;
+  margin-bottom: 4px;
+}
+
+#carte-attrib {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1000;
+  padding: 1px;
+}
+/* ==========================================
+ BLOC - droite 
+============================================= */
+
+#bloc-details {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 55%;
+  bottom: 0px;
+}
+
+#bloc-details-tabs {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 45px;
+  padding: 4px;
+}
+
+#bloc-details-load {
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  z-index: 50;
+  padding: 10px;
+  line-height: 11px;
+  display:none;
+}
+
+#bloc-details-main, #aide {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  right: 0px;
+  bottom: 100px;
+  padding: 10px;
+}
+
+#bloc-details-main {
+  z-index: 20;
+}
+#aide {
+  display: none;
+  z-index: 30;
+}
+
+#bloc-details-infos {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 4px;
+  height: 92px;
+}
+
+#bloc-details-infos img {
+  padding-bottom: 2px;
+  vertical-align: middle;
+}
+
+/* TABS ------------------ */
+#bloc-details-tabs a {
+  display: block;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 4px;
+  padding: 4px;
+}
+
+#bloc-details-main iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==========================================
+ FOOTER
+============================================= */
+
+#footer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 20px;
+	width: 100%;
+}
+
+#footer a {
+	color: white;
+}
+#footer a:hover {
+	color: yellow;
+}
+
+
+/* ==========================================
+ MESSAGES
+============================================= */
+#popup {
+  display: none;
+}
+#popup-fond {
+  position: absolute;
+  z-index: 90;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: white;
+  opacity: 0.8;
+}
+#popup-txt {
+  position: absolute;
+  z-index: 91;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+  bottom: 135px;
+  background-color: white;
+  border: 2px #0033CC solid;
+  padding: 10px;
+  overflow: auto;
+}
+
+#popup-button {
+  position: absolute;
+  z-index: 92;
+  right: 98px;
+  bottom: 90px;
+  background-color: #0033CC;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+#popup-button:hover {
+  text-decoration: underline;
+}
+
+#nojs, #vieuxie {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 100px;
+  background-color: white;
+  opacity: 0.96;
+}
+
+#helpParams {
+  display: none;
+}
+
+#chargement {
+  position: absolute;
+  z-index: 99;
+  top: 40%;
+  left: 40%;
+  background-color: #eee;
+  width: 400px;
+  height: 60px;
+  line-height: 60px;
+  margin-left: -150px;
+  margin-top: -30px;
+  text-align: center;
+  border: 5px #ccc solid;
+}
+
+#seo {
+  display: none;
+}

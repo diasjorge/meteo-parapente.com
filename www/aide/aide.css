@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+
+a.nav {
+  display: block;
+  background-color: #eee;
+  padding: 3px;
+  text-decoration: none;
+}
+
+a {text-decoration: none;}
+a:hover {text-decoration: underline;}

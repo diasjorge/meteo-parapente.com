@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+
+<h2>Thermiques</h2>
+  
+<div id="help-params-wstar">
+  <h3>Vitesse moyenne des thermiques</h3>
+  
+  <p>
+    Ascendance thermique moyenne.
+  </p>
+  <p>
+    On parle ici de thermiques purs, secs, en l'abscence de nuages.
+    Il faut soustraire le taux de chute de votre voile pour avoir la vitesse "vario".
+  </p>
+  <p>
+    Si des nuages convectifs sont présents, les ascendances seront plus fortes, car la condensation du nuage amplifie l'ascendance.
+  </p>
+  <p>
+    Remarque : La grille du modèle fait 2.5km. Elle ne peut donc pas prévoir le gros thermique de la ferme au père Bertrand... Lorsque ça monte <b>partout</b> à 2 ou 3m/s, c'est fort. A certains endroits, il y aura surement du 5 ou plus sur votre vario. Ce paramètre doit servir d'indicateur, et non pas de valeur absolue.
+  </p>
+</div>
+
+<div id="help-params-bsratio">
+  <h3>Ratio Flotabilité/Cisaillement</h3>
+  
+  <p>
+    Parfois, le vent n'est pas homogène dans la couche convective.
+    Se produit un effet de cisaillement. Ce phénomène déforme les "colonnes" de thermiques, les machouille, les découpe en petits morceaux... Rendant ainsi les ascendances pénibles, voir impossible à exploiter.
+  </p>
+  <p>
+    Ce paramètre est le ratio entre la vitesse des thermiques et l'amplitude du cisaillement.
+    C'est une valeur empirique, qui nous permet de déterminer la forme des thermiques. A chacun de déterminer sa limite, en fonction de  de ce qu'il recherche et de son niveau de pilotage. Vous pouvez prendre 5 comme étant la valeur de référence, en dessous de laquelle les thermiques seront hachés et difficilement exploitables.
+  </p>
+  <p>
+    Etant indexé sur la vitesse moyenne des thermiques (cf carte précédente), il souffre des mêmes limitations. Une ascendance plus forte entrainera un ratio supérieur
+  </p>
+</div>
+
+<h2>Vent</h2>
+
+<div id="help-params-windblavg">
+  <h3>Moyenne du vent dans la couche convective</h3>
+  
+  <p>
+  On prends la couche convective, et on fait la moyenne (vectorielle) du vent à toute les altitudes. <b>Ce n'est PAS le vent au sol. C'est le vent "en l'air".</b>
+  </p>
+  <p>
+  Si des vents trop différents sont présent dans la CC, cette indication peut être faussée. Dans ce cas, reportez-vous sur le graph "Vent vs Altitude", pour mieux comprendre la répartition dans et au dessus de la couche convective.
+  </p>
+</div>
+
+
+<div id="help-params-windbltop">
+  <h3>Vent au sommet de la couche convective</h3>
+  
+  <p>
+  Vent au sommet de la couche convective.
+  </p>
+  <p>Il est souvent différent du vent que vous pouvez ressentir au sol ou en vol.
+  <p>Voir le graph "Vent vs Altitude", pour mieux comprendre la répartition dans et au dessus de la couche convective.
+  </p>
+</div>
+
+
+<div id="help-params-blwindshear">
+  <h3>Cisaillement du vent, dans la CC.</h3>
+  
+  <p>
+  Parfois, le vent n'est pas homogène dans la couche convective.
+  Ce paramètre calcule l'amplitude des vitesses du vent, entre les différentes altitudes de la couche convective.
+  </p>
+  <p>
+  Cela nous permet de détecter un éventuel cisaillement. C'est directement visible dans le graph "Vent vs Altitude". Aussi, plus le vent moyen sera fort, plus ces différences peuvent être importantes.
+  </p>
+  <p>
+  Ce phénomène de cisaillement a une influence sur la qualité des thermiques. (cf "Thermiques&gt;Flotabilité/Cisaillement")
+  </p>
+</div>
+
+<div id="help-params-wblmaxmin">
+  <h3>Mouvements verticaux dans la CC (convergence).</h3>
+  
+  <p>
+  Amplitude des mouvements verticaux dans la couche convective.
+  C'est local et relativement dificile à prévoir avec beaucoup de précision. Le paramètre est bruité. 
+  </p>
+  <p>
+  Ce phénomène est notamment créé par la convergence des vents horizontaux
+  </p>
+  <p>
+  Une convergence et un CAPE élevés, peuvent déclencher des orages.
+  </p>
+  <p>
+  Une convergence négative (divergence) produit un un mouvement vertical persistant, créant des inversions basses, qui vont limiter le plafond des thermiques. 
+  </p>
+  Dans certains cas, on peut y voir apparaitre la brise de mer.
+  </p>
+</div>
+
+
+<h2>Couche Convective</h2>
+
+<div id="help-params-pblh">
+  <h3>Epaisseur de la couche convective.</h3>
+  
+  <p>
+  C'est la zone dans laquelle les échanges thermiques avec le sol se produisent.
+  Plus les thermiques sont puissants, plus la couche convective va être épaisse.
+  </p>
+  <p>
+  Vous remarquerez dans la vue "Vent vs Altitude", que le vent est généralement différent dans cette zone (représentée en jaune).
+  </p>
+</div>
+
+<div id="help-params-pbltop">
+  <h3>Plafond de la couche convective.</h3>
+  
+  <p>
+  Altitude plafond de la couche convective. Correspond au plafond moyen des thermiques purs.
+  </p>
+  <p>
+  Au dessus d'un terrain plat, vous ne pourrez pas enrouler jusqu'à cette altitude, à cause du taux de chute de votre aile, et d'autres facteurs.
+  </p>
+  <p>
+  Si des nuages sont présents (qui renforcent l'ascendance), le plafond des thermiques sera dessus de cette altitude, mais vous ne pourrez voler que jusqu'à la base des nuages.
+  </p>
+  <p>
+  Parfois, cette couche limite n'est pas formée par les thermiques, mais par de la turbulence. Dans ce cas précis, c'est inexploitable pour voler. (le paramètre "Thermiques &gt; Flotabilité/Cisaillement" nous l'indique)
+  </p>
+</div>
+
+
+<h2>Développement</h2>
+
+<div id="help-params-zsfclcldiff">
+  <h3>Potentiel développement de petits Cumulus</h3>
+  
+  <p>
+  Ce paramètre nous donne le potentiel pour la formation de petits cumulus (qui n'évoluent pas). C'est la différence d'altitude entre Lifted Condensation Level (LCL) et le plafond de la couche convective. Lorsque cette valeur est positive, des petits cumulus se forment. C'est un paramètre empirique, qui nécessite un ajustement local. Des nuages peuvent aussi se former si cette valeur est négative, dans le cas où de l'air serait soulevé à cette distance, par un effet dynamique non résolu par le modèle.
+  </p>
+</div>
+
+<div id="help-params-zsfclcl">
+  <h3>Base théorique des petits Cumulus</h3>
+  
+  <p>
+  Ce paramètre estime l'altitude de formation de petits cumulus (qui n'évoluent pas), <b>sans vérifier s'ils existent éffectivement ou non</b>.
+  </p>
+  <p>
+  Le niveau de condensation par ascension (LCL en anglais) est l'altitude à laquelle l'air humique doit s'élever avant de refroidir jusqu'au point de rosée. (cette carte se base sur l'humidité en surface. Ca limite la validité de ce paramètre aux petits nuages).
+  </p>
+  <p>
+  Cela dit, cette estimation n'est pas parfaite: Il est probable que la base des nuages soit en fait plus haute. Peut-être faut-il utiliser cette indice comme une valeur minimale ?
+  </p>
+</div>
+
+<div id="help-params-zsfclclmask">
+  <h3>Base des Petits Cumulus, là où ils devraient se former</h3>
+  
+  <p>
+  La combinaison des deux paramètres précédents : où des petits cumulus vont ils se former, et à quelle altitude ?
+  </p>
+  <p>
+  Cette carte affiche la base des petits cumulus, là où le potentiel petits cumulus est > 0.
+  </p>
+  <p>
+  Notez toutefois que cette limite "Potentiel Petits Cu" est empirique, et devrait être ajusté localement. Cette carte est là pour la comodité. Si votre limite locale est plus élevée, cette carte va suréstimer la formation de nuages.
+  </p>
+  <p>
+  Décochez la case "interpolation" (sous la légende), pour mieux apprécier ce paramètre.
+  </p>
+</div>
+
+
+
+<div id="help-params-zblcldiff">
+  <h3>Potentiel Surdéveloppement</h3>
+  
+  <p>
+  Ce paramètre nous donne le potentiel pour le gros cumulus.
+  </p>
+  <p>
+  Lorsque cette valeur est positive, de gros cumulus se forment. C'est un paramètre empirique, qui nécessite un ajustement local.
+  </p>
+  <p>
+  Des nuages peuvent aussi se former si cette valeur est négative, dans le cas où de l'air serait soulevé à cette distance, par un effet dynamique non résolu par le modèle.
+  </p>
+</div>
+
+<div id="help-params-zblcl">
+  <h3>Base théorique du Surdéveloppement</h3>
+  
+  <p>
+    Cette altitude estime la base des gros cumulus. <b>sans vérifier s'ils existent éffectivement ou non</b>.
+  </p>
+  <p>Le niveau de condensation est basé sur l'humidité moyenne de la couche convective, et de ce fait, ne s'applique qu'aux gros cumulus. 
+  </p>
+</div>
+
+<div id="help-params-zblclmask">
+  <h3>Base Surdév, si Existant</h3>
+  
+  <p>
+    La combinaison des deux paramètres précédents : où de gros cumulus vont ils se former, et à quelle altitude ?
+  </p>
+  <p>
+    Cette carte affiche la base des gros cumulus, là où le potentiel gros cumulus est > 0.
+  </p>
+  <p>
+    Notez toutefois que cette limite "Potentiel Gros Cu" est empirique, et devrait être ajusté localement. Cette carte est là pour la comodité.
+  </p>
+  <p>
+  Si votre limite locale est plus élevée, cette carte va suréstimer la formation de nuages.
+  </p>
+</div>
+
+
+<h2>Nébulosité</h2>
+
+<div id="help-params-cfrach">
+  <h3>Couverture Nuageuse étage Haut</h3>
+  
+  <p>
+    Nuages de hautes altitudes
+  </p>
+</div>
+
+<div id="help-params-cfracm">
+  <h3>Couverture Nuageuse étage Moyen</h3>
+  
+  <p>
+    Nuages d'altitude moyenne
+  </p>
+</div>
+
+<div id="help-params-cfracl">
+  <h3>Couverture Nuageuse étage Bas</h3>
+  
+  <p>
+    Nuages de basse altitude
+  </p>
+</div>
+
+<h2>Divers</h2>
+
+<div id="help-params-tc2">
+  <h3>Température à 2m sol</h3>
+  
+  <p>
+    La température à 2m du sol.
+  </p>
+  <p>C'est un paramètre réputé très fiable. Il peut donc servir à vérifier la validité des prévisions. Si la température est très différente de ce qui a été annoncé, méfiance !
+  </p>
+</div>
+
+<div id="help-params-ter">
+  <h3>Topographie du modèle</h3>
+  
+  <p>
+    Le relief, tel que vu par le modèle météo.
+  </p>
+  <p>
+    On remarquera que celui-ci a une résolution limitée, et ne peut donc pas prendre en compte toutes les aspérités locales. C'est pourquoi, dans tous les cas, ces prévisions sont à utiliser en tant qu'ordre de grandeur, et non pas de valeurs absolues.
+  </p>
+</div>
+
+  </body>
+</html>
