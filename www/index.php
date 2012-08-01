@@ -1,3 +1,8 @@
+<?php
+function v ($fichier) {
+  echo filemtime('.'.$fichier);
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,18 +10,18 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Prévisions météo pour le Vol Libre - meteo-parapente.com - </title>
     
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css?_<?php v('/css/layout.css');?>">
+    <link rel="stylesheet" href="/css/style.css?_<?php v('/css/style.css');?>">
     
     <script type="text/javascript">
     document.write('<style type="text/css">#nojs { display: none; }</style>');
     </script>
     
-    <!--[if lt IE 8]><script type="text/javascript" src="/js/ie7.js"></script><![endif]-->
-    <!--[if lt IE 9]><script type="text/javascript" src="/js/flashcanvas.js"></script><![endif]-->
+    <!--[if lt IE 8]><script type="text/javascript" src="/js/ie7.js?_<?php v('/js/ie7.js');?>"></script><![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="/js/flashcanvas.js?_<?php v('/js/flashcanvas.js');?>"></script><![endif]-->
    
     <script src="/js/deps.php"></script>
-    <script src="/a/config.js"></script>
+    <script src="/a/config.js?_<?php v('/a/config.js');?>"></script>
     <script src="/config/couleurs.php"></script>
     <script src="/js/ui.php"></script>
     
@@ -143,7 +148,7 @@
 	    <img src="/img/load.gif">
 	  </div>
 	  <div id="bloc-details-main">
-	    <iframe frameborder="0" src="welcome.html"></iframe>
+	    <iframe frameborder="0" src="/welcome.html?_<?php v('/welcome.html');?>"></iframe>
 	  </div>
 	  <div id="aide"></div>
 	  <div id="bloc-details-infos">
