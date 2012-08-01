@@ -41,8 +41,7 @@ function v ($fichier) {
 	<b><big>Prévisions météo pour le Vol Libre - <i>Expérimental</i></big></b>
 	
 	<div id="helpUs">
-	  Don't speak french ?<br>
-	  English website is coming soon...
+	  Je cherche des assistant(e)s<br>pour m'aider à développer le site.
 	</div>
 	
 	<div id="date-select">
