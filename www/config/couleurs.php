@@ -1,7 +1,7 @@
 <?php
 header('Content-type: text/javascript; charset=utf-8');
 
-$tileserve_dir = '/home/nicolas/meteo-parapente.com/v0.2/tileserver';
+$tileserve_dir = '../../tileserver';
 
 echo "/*\n   couleurs.js, compilé depuis \n      $tileserve_dir/colors.h\n   et $tileserve_dir/colors.cpp\n*/\n";
 
@@ -87,8 +87,8 @@ $whichPalette = preg_replace($pattern, $replacement, $whichPalette);
 
 $whichPalette = str_replace("\n", '', $whichPalette);
 
-echo 'function whichPalette() {';
-echo 'var p = UI.Params.param.toUpperCase();';
+echo 'function whichPalette(p) {';
+echo 'p = p.toUpperCase();';
 echo $whichPalette;
 echo 'return c};';
 ?>

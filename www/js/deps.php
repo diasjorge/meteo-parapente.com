@@ -1,11 +1,12 @@
 <?php
 
+
 $files = array('jquery-1.7.2.min','canvg', 'OpenLayers');
 
 $scripts_dir = '../../js/deps/';
 $cache_dir = '../../cache/';
 
-$last = file_get_contents($cache_dir.'deps.cached');
+$last = @file_get_contents($cache_dir.'deps.cached');
 $new = $last;
 
 foreach ($files as $file) {
@@ -40,8 +41,8 @@ if ($new == $last) {
   }
   
  
-  file_put_contents($cache_dir.'deps.js', $js);
-  file_put_contents($cache_dir.'deps.cached', $new);
+  @file_put_contents($cache_dir.'deps.js', $js);
+  @file_put_contents($cache_dir.'deps.cached', $new);
   
   echo $js;
 }

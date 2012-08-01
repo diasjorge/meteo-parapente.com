@@ -5,7 +5,7 @@ $files = array('carte', 'global', 'emagramme', 'vent', 'ui');
 $scripts_dir = '../../js/ui/';
 $cache_dir = '../../cache/';
 
-$last = file_get_contents($cache_dir.'ui.cached');
+$last = @file_get_contents($cache_dir.'ui.cached');
 $new = $last;
 
 foreach ($files as $file) {
@@ -25,8 +25,9 @@ if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $new) {
 header("Content-type: application/x-javascript; charset=utf-8");
 header('Last-Modified: '.gmdate("D, d M Y H:i:s \G\M\T",$new));
 
-echo "// © 2012 Nicolas BALDECK - Tous droits réservés\n";
-echo "// si vous souhaitez utiliser ma technologie, contactez moi : nicolas.baldeck@romma.fr\n\n";
+echo "/* © 2012 Nicolas BALDECK\n";
+echo "Utiliser les prévisions de RASP France : http://rasp-france.org/utiliser-les-donnees\n";
+echo "Participer au développement de ce site : https://github.com/nbald/meteo-parapente.com */\n\n";
 
 if ($new == $last) {
   $date_txt = date('d/m/Y H:i:s', $last);
@@ -46,8 +47,8 @@ if ($new == $last) {
   $packer = new JavaScriptPacker($js, 'Normal', true, false);
   $packed = $packer->pack();
   
-  file_put_contents($cache_dir.'ui.js', $packed);
-  file_put_contents($cache_dir.'ui.cached', $new);
+  @file_put_contents($cache_dir.'ui.js', $packed);
+  @file_put_contents($cache_dir.'ui.cached', $new);
   
   echo $packed;
 }

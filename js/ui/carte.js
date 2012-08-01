@@ -112,7 +112,7 @@ function CarteObject () {
    };
    
   this.refreshEchelle = function () {
-    var pal = whichPalette();
+    var pal = whichPalette(UI.Params.param);
     
     if (!pal) {
        $("#legende-carte-scale").html("<p>Légende manquante pour ce paramètre.</p>");
