@@ -309,6 +309,7 @@ $(document).ready(function () {
       //var nruns = data["france"].length;
       var max = 2;
       for (var i=0; i<max; i++) {
+	if (!data["france"][i]) break;
 	if (data["france"][i]["status"] == "complete") { 
 	  if (UI.Params.date == "") {
 	    UI.Params.date = data["france"][i]["day"];
