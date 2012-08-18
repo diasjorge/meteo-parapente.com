@@ -1,4 +1,6 @@
 body {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
 }
 
@@ -6,16 +8,42 @@ img {
   border: none;
 }
 
+/* ==========================================
+ HEADER
+============================================= */
+
 #header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 62px;
+  padding: 4px;
   background-color: #222;
   color: white;
+}
+
+/* helpUs ------------------ */
+
+#helpUs {
+  float: right;
+  padding: 10px;
+  color: yellow;
 }
 
 #helpUs a {
   color: yellow;
 }
 
-
+/* DATE ------------------ */
+#date-select a {
+  display: block;
+  float: left;
+  height: 25px;
+  line-height: 25px;
+  margin-right: 4px;
+  padding: 4px;
+}
 
 #date-select a, #bloc-details-tabs a {
   background-color: #ccc;
@@ -32,12 +60,99 @@ img {
   text-decoration: underline;
 }
 
+/* ==========================================
+ BLOC
+============================================= */
+
+#bloc {
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  right: 0px;
+  bottom: 20px;
+}
+
+/* ==========================================
+ BLOC - gauche 
+============================================= */
+
+#bloc-carte {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 45%;
+  bottom: 0px;
+  background-color: #ddd;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#bloc-carte-haut {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 4px;
+  height: 30px;
+}
+
+#bloc-carte-carte {
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  right: 5px;
+  bottom: 90px;
+  background-color: white;
+}
+
+#bloc-carte-bas {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 90px;
+  font-size: 12px;
+}
+
+
+#bloc-carte-haut a {
+  padding: 3px;
+  text-decoration: none;
+  color: white;
+  background-color: #0033CC;
+}
+
+#bloc-carte-haut-hour {
+  float: right;
+}
+
+/* CARTE ---------- -----------------------*/
+
+#select-param-menu {
+  position: absolute;
+  left: 5px;
+  top: 30px;
+  width: 350px;
+  z-index: 10;
+  display: none;
+}
+
 #select-param-menu, #select-hour-menu {
   background-color: white;
   -moz-box-shadow:	 0 0 5px black;
   -webkit-box-shadow:  0 0 5px black;
   box-shadow:          0 0 5px black;
 }
+
+
+#param-categorie {
+  width: 120px;
+}
+
 
 #param-categorie a, #param-list a {
   background-color: white !important;
@@ -52,43 +167,104 @@ img {
    background-color: #ddd !important; 
 }
 
+#param-list {
+  float: right;
+  width: 230px;
+}
 
+#param-categorie a, #param-list a  {
+  display: block;
+  padding: 10px;
+}
+
+#select-hour-menu {
+  position: absolute;
+  right: 5px;
+  top: 30px;
+  width: 350px;
+  z-index: 10;
+}
 
 #hour-slider {
- background-color:white;
- border: 1px black solid;
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 5px;
+  top: -2px;
+  background-color:white;
+  border: 1px black solid;
 }
 #hour-slider-handle {
- background-color:#0033CC;
- border: 1px black solid;
- cursor: pointer;
+  display: block;
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 10px;
+  width: 14px;
+  margin: 0 0 0 -7px;
+  padding: 0px !important;
+  background-color:#0033CC;
+  border: 1px black solid;
+  cursor: pointer;
 }
 #hour-slider-handle:active {
  background-color:white !important;
  cursor: move;
 }
 
-#bloc-carte {
-  background-color: #ddd;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+
+#carte-zoom {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1000;
 }
 
-#bloc-carte-haut {
+#carte-zoom a{
+  display: block;
+  height: 25px;
+  width: 25px;
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 25px;
+  text-align: center;
+  background-color: #0033CC;
+  text-decoration: none;
+  color: white;
 }
-
-#bloc-carte-carte {
+#carte-zoom a:hover {
+  text-decoration: underline;
+}
+#carte-attrib {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1000;
+  padding: 1px;
+  font-size: 10px;
   background-color: white;
+  opacity: 0.8;
 }
 
-#bloc-carte-bas  {
- font-size: 12px;
+/* recherche */
+#carte-search {
+  position: absolute;
+  top:0;
+  right: 0;
+  z-index: 1000;
+  background-color: #0033CC;
+  padding: 3px;
 }
 
+#carte-search img {
+  border: none;
+  vertical-align: middle;
+}
+#carte-search-go:hover {
+  border-bottom: 1px white solid;
+}
+/* LEGENDE CARTE -----------------*/
 #legende-carte {
   background-color: white;
   margin: 5px;
@@ -106,63 +282,114 @@ img {
   top: 55px;
   text-align: right;
 }
+/* ==========================================
+ BLOC - droite 
+============================================= */
 
-#bloc-details{
+#bloc-details {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 55%;
+  bottom: 0px;
 }
 
-#bloc-details-tabs {
-  background-color: black;
-  color: white;
-}
+
+
 #bloc-details-load {
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  z-index: 50;
+  padding: 10px;
+  line-height: 11px;
+  display:none;
   background-color: #0033CC;
 }
 
+/* TABS ------------------ */
+#bloc-details-tabs {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 45px;
+  padding: 4px;
+  background-color: black;
+  color: white;
+}
+
+#bloc-details-tabs a {
+  display: block;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 4px;
+  padding: 4px;
+}
+
+/* MAIN ------------------ */
+
 #bloc-details-main, #aide {
-    background-color: white;
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  right: 0px;
+  bottom: 100px;
+  padding: 10px;
+  background-color: white;
+}
+
+#bloc-details-main {
+  z-index: 20;
+}
+#aide {
+  display: none;
+  z-index: 30;
 }
 
 #bloc-details-infos {
-   background-color:black;
-   color: white;
-   font-size: 12px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 4px;
+  height: 92px;
+  background-color:black;
+  color: white;
+  font-size: 12px;
 }
 
 #bloc-details-infos a {
   color: white;
 }
-
 #bloc-details-infos a:hover {
   color: yellow;
 }
 
-#bloc-carte-haut a {
-  text-decoration: none;
-  color: white;
-  background-color: #0033CC;
+#bloc-details-infos img {
+  padding-bottom: 2px;
+  vertical-align: middle;
 }
 
-#carte-zoom a {
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 25px;
-  text-align: center;
-  background-color: #0033CC;
-  text-decoration: none;
-  color: white;
+
+
+#bloc-details-main iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
-#carte-zoom a:hover {
-  text-decoration: underline;
-}
-
-#carte-attrib {
-  font-size: 10px;
-  background-color: white;
-  opacity: 0.8;
-}
+/* ==========================================
+ FOOTER
+============================================= */
 
 #footer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 20px;
+	width: 100%;
 	font-size: 12px;
 	line-height: 20px;
 	text-align: center;
@@ -175,4 +402,94 @@ img {
 }
 #footer a:hover {
 	color: yellow;
+}
+
+
+/* ==========================================
+ MESSAGES
+============================================= */
+#popup {
+  display: none;
+}
+#popup-fond {
+  position: absolute;
+  z-index: 90;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: black;
+  opacity: 0.6;
+}
+#popup-txt {
+  position: absolute;
+  z-index: 91;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+  bottom: 135px;
+  background-color: white;
+  border: 2px #0033CC solid;
+  padding: 10px;
+  overflow: auto;
+}
+
+#popup-load {
+  position: absolute;
+  z-index: 100;
+  top: 150px;
+  left: 150px;
+  display: none;
+}
+
+
+#popup-button {
+  position: absolute;
+  z-index: 92;
+  right: 90px;
+  top: 90px;
+  background-color: #0033CC;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+#popup-button:hover {
+  text-decoration: underline;
+}
+
+#nojs, #vieuxie {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 100px;
+  background-color: white;
+  opacity: 0.96;
+}
+
+#helpParams {
+  display: none;
+}
+
+#chargement {
+  position: absolute;
+  z-index: 99;
+  top: 40%;
+  left: 40%;
+  background-color: #eee;
+  width: 400px;
+  height: 60px;
+  line-height: 60px;
+  margin-left: -150px;
+  margin-top: -30px;
+  text-align: center;
+  border: 5px #ccc solid;
+}
+
+#seo {
+  display: none;
 }

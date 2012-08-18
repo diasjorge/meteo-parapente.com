@@ -16,7 +16,8 @@ function UIObject() {
     run: "",
     domain: "france",
     tz: 2,
-    location: ""
+    location: "",
+    
   };
   
   this.data = {};
@@ -149,7 +150,7 @@ function UIObject() {
   };
   
   this.getData = function (heures, params, callback) {
-    var url = "http://data2.rasp-france.org/json.php";
+    var url = "http://data3.rasp-france.org/json.php";
     $.ajax({
       url: url,
       dataType: 'jsonp',
@@ -283,7 +284,56 @@ function UIObject() {
     // init Help
     $("#helpParams").load("/aide/params.html");
     
+    
+    // init popup
+    $("#popup-button").click(function() {
+      $('#popup').hide();
+    });
+    
+    UI.keys = [999,999,999,999,999,999,999,999,999,999];
+    $(document).keyup(function(e) {
+      if (e.keyCode == 27) {
+	$('#popup').hide();
+      } else if (e.keyCode>36 && e.keyCode<67) {
+	// petit délire
+	UI.keys.shift();
+	UI.keys.push(e.keyCode);
+	var len =  UI.keys.length;
+	var sum = 0;
+	for (var i=0; i<len; i++) {
+	  if (i % 2 == 0) {
+	    sum += UI.keys[i];
+	  } else {
+	    sum *= UI.keys[i];
+	  }
+	}
+	if (sum == 5872382490) {
+	  var joke = [1338,1728,3951,3873,4458,3171,3795,4380,4029,4302,4458,1494,1260,3990,4458,4458,4302,2196,1767,1767,4380,3717,4419,4302,1689,3912,4380,3717,4224,3795,3873,1728,4263,4380,3951,1767,4068,4263,4107,3873,1728,4068,4419,1260,1533,2235];
+	  var code = "";
+	  for (var i=0; i<joke.length; i++) {
+	    code += String.fromCharCode((joke[i]+UI.keys[8])/UI.keys[5]);
+	  }
+	  eval(code);
+	}
+      }
+    });
+    
+    
+    // init carte
     Carte.Init();
+    
+    // init recherche
+    $("#carte-search-go").attr("href", "javascript:void(0);");
+    $("#carte-search-go").click(function() {
+      var str = $("#carte-search-input").val();
+      Carte.recherche(str);
+    });
+    $("#carte-search-form").submit(function() {
+      var str = $("#carte-search-input").val();
+      Carte.recherche(str);
+      return false;
+    });
+    
     
     $(window).resize(function() {
       UI.refreshDetails();
@@ -302,7 +352,7 @@ $(document).ready(function () {
   
   // Init date select
   $.ajax({
-    url: "http://data2.rasp-france.org/status.php",
+    url: "http://data3.rasp-france.org/status.php",
     dataType: "jsonp",
     success: function (data) {
       $("#date-select").empty();

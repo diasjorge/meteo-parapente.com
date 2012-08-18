@@ -19,7 +19,7 @@ function EmagrammeObject () {
   
   this.draw = function () {
     
-    var canvasEl = $("<canvas id=\"visu\" width></canvas>");
+    var canvasEl = $("<canvas id=\"visu\"></canvas>");
     canvasEl.attr("width", this.w);
     canvasEl.attr("height", this.h);
 

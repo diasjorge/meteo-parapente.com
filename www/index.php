@@ -10,7 +10,6 @@ function v ($fichier) {
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Prévisions météo pour le Vol Libre - meteo-parapente.com - </title>
     
-    <link rel="stylesheet" href="/css/layout.css?_<?php v('/css/layout.css');?>">
     <link rel="stylesheet" href="/css/style.css?_<?php v('/css/style.css');?>">
     
     <script type="text/javascript">
@@ -30,7 +29,7 @@ function v ($fichier) {
     
     <div id="seo">
       <h1>Météo-parapente.com - Météo pour le vol libre : parapente, deltaplanne.</h1>
-      <p>Météo-parapente.com est un site météo gratuit pour le vol libre et le parapente. En utilisant le modèle RASP (regional atmospheric soaring prediction), nous vous donnons une prévision des ascendances thermiques, prévision du plafond, des émagrammes pour le parapente.</p>
+      <p>Météo-parapente.com est un site météo gratuit pour le vol libre et le parapente. Grace à l'association RASP France, qui utilisant le modèle RASP (regional atmospheric soaring prediction), nous vous donnons une prévision des ascendances thermiques, prévision du plafond, des émagrammes pour le parapente.</p>
     </div>
     
     <div id="chargement">Chargement de l'application ...</div>
@@ -71,6 +70,12 @@ function v ($fichier) {
 	    </div>
 	  </div>
 	  <div id="bloc-carte-carte">
+	    <div id="carte-search">
+	      <form id="carte-search-form">
+		<input type="text" id="carte-search-input">
+		<a id="carte-search-go"><img src="/img/recherche.png" alt="go"></a>
+	      </form>
+	    </div>
 	    <div id="carte-zoom">
 	      <a id="carte-zoom-plus">+</a>
 	      <a id="carte-zoom-moins">-</a>
@@ -173,9 +178,9 @@ function v ($fichier) {
     
      <div id="popup">
       <div id="popup-fond"></div>
-      <input id="popup-button" type="button" value="Retour au site &raquo;" onclick="$('#popup').fadeOut();">
-      <div id="popup-txt">
-      </div>
+      <input id="popup-button" type="button" value="Fermer" onclick="$('#popup').hide();">
+      <div id="popup-txt"></div>
+      <img id="popup-load" src="/img/load2.gif">
     </div>
     
     <div id="nojs">

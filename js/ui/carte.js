@@ -237,8 +237,81 @@ function CarteObject () {
     
   };
   
-  
+  this.recherche = function (str) {
+    if (str == "") return;
+    
+    $("#popup-txt").empty();
+    $("#popup-load").show();
+    $("#popup").fadeIn("fast");
 
+    $.ajax({
+      url: "http://data3.rasp-france.org/lieux.php",
+      dataType: "jsonp",
+      data: {q: str},
+      success: function (data) {
+	if (!data.status || data.status != "ok") {
+	  $("#popup-load").hide();
+	  $("#popup-txt").html("une erreur s'est produite :<br>"+data.message);
+	  return;
+	}
+	
+	var html = "<h3>Recherche : <i>"+data.q+"</i></h3>";
+	
+	html += "<h4>Décollages FFVL</h4>";
+	if (!data.ffvld) {
+	  html += "<p><i>Pas de résultats</i></p>";
+	} else {
+	  for (var i=0; i<data.ffvld.length; i++) {
+	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.ffvld[i].lat+','+data.ffvld[i].lon+');">'+data.ffvld[i].nom+'</a></p>';
+	  }
+	}
+	
+	html += "<h4>Attérros FFVL</h4>";
+	if (!data.ffvla) {
+	  html += "<p><i>Pas de résultats</i></p>";
+	} else {
+	  for (var i=0; i<data.ffvla.length; i++) {
+	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.ffvla[i].lat+','+data.ffvla[i].lon+');">'+data.ffvla[i].nom+'</a></p>';
+	  }
+	}
+	
+	html += "<h4>Aérodromes</h4>";
+	if (!data.aero) {
+	  html += "<p><i>Pas de résultats</i></p>";
+	} else {
+	  for (var i=0; i<data.aero.length; i++) {
+	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.aero[i].lat+','+data.aero[i].lon+');">'+data.aero[i].nom+'</a></p>';
+	  }
+	}
+	
+	html += "<h4>Géographie</h4>";
+	if (!data.osm) {
+	  html += "<p><i>Pas de résultats</i></p>";
+	} else {
+	  for (var i=0; i<data.osm.length; i++) {
+	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.osm[i].lat+','+data.osm[i].lon+');">'+data.osm[i].nom+'</a></p>';
+	  }
+	}
+	
+	html += "<hr><small><b>Sources des données :</b><br>";
+	html += 'FFVL : <a href="http://carte.ffvl.fr/?mode=parapente" target="_blank">http://carte.ffvl.fr/?mode=parapente</a><br>';
+	html += 'Aérodromes : <a href="http://www.jprendu.fr/aeroweb/" target="_blank">http://www.jprendu.fr/aeroweb/</a><br>';
+	html += 'Géographie : <a href="http://www.openstreetmap.fr/" target="_blank">OpenStreetMap</a> via <a href="http://developer.mapquest.com/web/products/open/nominatim/" target="_blank">MapQuest Nominatim</a>';
+	$("#popup-txt").html(html);
+	$("#popup-load").hide();
+      }
+    });
+  };
+  
+  this.rechercheOK = function (lat, lon) {
+    $("#popup").hide();
+    UI.Params.lat = lat;
+    UI.Params.lon = lon;
+    var center = new OpenLayers.LonLat(lon,lat).transform(this.wgs84,this.mercator);
+    this.map.setCenter(center, 8);
+    this.updateZone();
+    UI.refreshDetails();
+  };
   
 };
 
