@@ -256,6 +256,7 @@ function CarteObject () {
 	}
 	
 	var html = "<h3>Recherche : <i>"+data.q+"</i></h3>";
+	html += '<p style="color: red;font-size: small;">Pour l\'instant, la recherche est réstreinte à la France.</p>';
 	
 	html += "<h4>Décollages FFVL</h4>";
 	if (!data.ffvld) {
