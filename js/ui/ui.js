@@ -83,9 +83,7 @@ function UIObject() {
   this.switchTab = function(tab) {
     if (tab == "avis") {
       UserVoice.showPopupWidget();
-      return;
-    }
-    if (tab == "aide") {
+    } else if (tab == "aide") {
       this.showHelp("");
     } else if (this.Params.tab != tab) {
       $("#aide").hide();
@@ -124,6 +122,13 @@ function UIObject() {
   this.refreshDetails = function (lonlat) {
     switch (this.Params.tab) {
       case "":
+	break;
+      case "bulletin":
+	if (this.Params.tabObject != "bulletin") {
+	  this.Params.tabObject="bulletin";
+	  var time = (new Date()).getTime();
+	  $("#bloc-details-main").html('<iframe src="http://data2.rasp-france.org/bulletin.php?_='+time+'"></iframe>');
+	}
 	break;
       /*case "visuglobale":
 	VisuGlob.refresh();

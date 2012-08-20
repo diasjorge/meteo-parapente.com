@@ -142,7 +142,7 @@ function v ($fichier) {
 	
 	<div id="bloc-details">
 	  <div id="bloc-details-tabs">
-	    <a id="tab-visuglobale">Global</a>
+	    <a id="tab-bulletin">Bulletin <img src="/img/new.gif"></a>
 	    <a id="tab-vent">Vent vs Alti</a>
 	    <a id="tab-emagramme">Emagramme</a>
 	    <a id="tab-aide">Aide</a>
