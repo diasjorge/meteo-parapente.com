@@ -17,7 +17,7 @@ function UIObject() {
     domain: "france",
     tz: 2,
     location: "",
-    
+    lang: "fr"
   };
   
   this.data = {};
@@ -233,6 +233,8 @@ function UIObject() {
   };
   
   this.Init = function () {
+    
+    // Init date
     $("#date-select-"+UI.Params.run+"-"+UI.Params.date).addClass("selected");
     $("#infos-date").html(UI.Params.date);
     $("#infos-run").html(UI.Params.run);
@@ -353,7 +355,26 @@ function UIObject() {
 var UI = new UIObject();
 
 $(document).ready(function () {
-
+  
+    // init lang
+    var langs = ["fr","en","nl","de","it","es","cat"];
+    var coming = ["fr","Coming soon...","Binnenkort...","Demnächst...","In arrivo...","Próximamente...","Properament..."];
+    for (var i=0; i<langs.length; i++) {
+      var btn = $("<a></a>");
+      btn.attr("id", "lang-"+langs[i]);
+      if (i != 0) {
+	btn.attr("title", coming[i]);
+      } else {
+	btn.attr("href", "javascript:void(0);");
+	btn.addClass("selected");
+      }
+      var img = $("<img></img>");
+      img.attr("src", "/img/flag_"+langs[i]+".png");
+      img.attr("alt", langs[i]);
+      btn.html(img);
+      $("#langs").append(btn);
+      $("#langs").append("&nbsp;");
+    }
   
   // Init date select
   $.ajax({

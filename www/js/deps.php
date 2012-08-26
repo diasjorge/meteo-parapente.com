@@ -1,7 +1,7 @@
 <?php
 
 
-$files = array('jquery-1.7.2.min','canvg', 'OpenLayers');
+$files = array('canvg');
 
 $scripts_dir = '../../js/deps/';
 $cache_dir = '../../cache/';
@@ -16,6 +16,17 @@ foreach ($files as $file) {
   
   $mtime = filemtime($filename);
   if ($mtime>$new) $new = $mtime;
+}
+
+if (array_key_exists('debug', $_GET)) {
+  echo "/* VERSION DEBUG */\n\n\n";
+  header("Content-type: application/x-javascript; charset=utf-8");
+  foreach ($files as $file) {
+    $filename = $scripts_dir.$file.'.js';
+    readfile($filename);
+    echo "\n";
+  }
+  exit();
 }
 
 if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $new) { 

@@ -17,6 +17,17 @@ foreach ($files as $file) {
   if ($mtime>$new) $new = $mtime;
 }
 
+if (array_key_exists('debug', $_GET)) {
+  echo "/* © 2012 Nicolas BALDECK - VERSION DEBUG */\n\n\n";
+  header("Content-type: application/x-javascript; charset=utf-8");
+  foreach ($files as $file) {
+    $filename = $scripts_dir.$file.'.js';
+    readfile($filename);
+    echo "\n";
+  }
+  exit();
+}
+
 if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $new) { 
     header("HTTP/1.1 304 Not Modified"); 
     exit; 

@@ -1,5 +1,3 @@
-//OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
-
 
 function CarteObject () {
   
@@ -9,17 +7,17 @@ function CarteObject () {
   this.zone = {};
   
   this.Init = function () {
- 
+  
     this.map = new OpenLayers.Map({div: "bloc-carte-carte", allOverlays: true, controls: []});
     var center = new OpenLayers.LonLat(2.5,46.5).transform(this.wgs84,this.mercator);
     
     this.map.addControl(new OpenLayers.Control.Navigation());
 
-    var OSMLayer = new OpenLayers.Layer.OSM("Cartographie OpenStreetMap", "http://tilestream.meteo-parapente.com/RASP_Geolayer_9c3d4e/${z}/${x}/${y}.png");
+    var OSMLayer = new OpenLayers.Layer.OSM("Cartographie OpenStreetMap", "http://tilestream.meteo-parapente.com/RASP_Geolayer_9c3d4e/${z}/${x}/${y}.png", {tileOptions: {crossOriginKeyword: null}});
     //OSMLayer.setOpacity(0.8);
 
     //var hill = new OpenLayers.Layer.OSM("Relief NASA SRTM3", "/img/blank.png");
-    var hill = new OpenLayers.Layer.OSM("Relief NASA SRTM3", "http://toolserver.org/~cmarqu/hill/${z}/${x}/${y}.png");
+    var hill = new OpenLayers.Layer.OSM("Relief NASA SRTM3", "http://toolserver.org/~cmarqu/hill/${z}/${x}/${y}.png", {tileOptions: {crossOriginKeyword: null}});
     //hill.setOpacity(0.7);
 
     var markers = new OpenLayers.Layer.Markers( "Markers" );
@@ -69,7 +67,7 @@ function CarteObject () {
     var utc = strPad(UI.Params.heure-UI.Params.tz, 2); 
     var url="http://wms.meteo-parapente.com/"+UI.Params.run+"/"+UI.Params.date+utc+"0000/"+UI.Params.domain+"/"+UI.Params.param+"/${z}/${x}/${y}";
     UI.Params.noip ? url += "/noip.png" : url += "/tile.png";
-    var RASPLayer = new OpenLayers.Layer.OSM("RASP", url);
+    var RASPLayer = new OpenLayers.Layer.OSM("RASP", url, {tileOptions: {crossOriginKeyword: null}});
     RASPLayer.setOpacity(UI.Params.opacity);
 
     this.map.addLayer(RASPLayer);

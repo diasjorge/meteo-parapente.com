@@ -23,6 +23,21 @@ img {
   color: white;
 }
 
+
+/* langue */
+
+#langs {
+  padding: 2px 4px;
+  margin-left: 10px;
+}
+#langs img {
+  border: 1px white solid;
+  opacity: 0.5;
+}
+#langs .selected img, #langs img:hover {
+  opacity: 1;
+}
+
 /* helpUs ------------------ */
 
 #helpUs {
@@ -263,6 +278,10 @@ img {
 }
 #carte-search-go:hover {
   border-bottom: 1px white solid;
+}
+
+.olImageLoadError { 
+    display: none;
 }
 /* LEGENDE CARTE -----------------*/
 #legende-carte {
