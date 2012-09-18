@@ -1,5 +1,5 @@
 <?php
-$lang = 'en';
+$lang = 'fr';
 
 if (array_key_exists('lang', $_GET)) {
   if (preg_match("/^(([a-z]{2})|([a-z]{3}))$/", $_GET['lang'])) {
