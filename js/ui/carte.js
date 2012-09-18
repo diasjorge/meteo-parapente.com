@@ -9,28 +9,41 @@ function CarteObject () {
   this.Init = function () {
   
     this.map = new OpenLayers.Map({div: "bloc-carte-carte", allOverlays: true, controls: []});
-    var center = new OpenLayers.LonLat(2.5,46.5).transform(this.wgs84,this.mercator);
+    
     
     this.map.addControl(new OpenLayers.Control.Navigation());
 
     var OSMLayer = new OpenLayers.Layer.OSM("Cartographie OpenStreetMap", "http://tilestream.meteo-parapente.com/RASP_Geolayer_9c3d4e/${z}/${x}/${y}.png", {tileOptions: {crossOriginKeyword: null}});
     //OSMLayer.setOpacity(0.8);
 
+   
+    
+    
     //var hill = new OpenLayers.Layer.OSM("Relief NASA SRTM3", "/img/blank.png");
     var hill = new OpenLayers.Layer.OSM("Relief NASA SRTM3", "http://toolserver.org/~cmarqu/hill/${z}/${x}/${y}.png", {tileOptions: {crossOriginKeyword: null}});
     //hill.setOpacity(0.7);
 
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    
+    
+    
+    
+    var markers = new OpenLayers.Layer.Markers( "Markers", {'displayInLayerSwitcher':false} );
+    
     
     this.map.addLayers([hill, OSMLayer]);
+
     this.map.setLayerIndex(hill, 1);
     this.map.setLayerIndex(OSMLayer, 2);
+    
     
     this.zone = new OpenLayers.Marker(new OpenLayers.LonLat(0,0)) ;
     markers.addMarker(this.zone);
     this.map.addLayer(markers);
-    //this.map.addControl(new OpenLayers.Control.LayerSwitcher());
-    
+    this.map.addControl(new OpenLayers.Control.LayerSwitcher());
+    var scaleline = new OpenLayers.Control.ScaleLine();
+    this.map.addControl(scaleline);
+
+    var center = new OpenLayers.LonLat(2.5,46.5).transform(this.wgs84,this.mercator);
     this.map.setCenter(center, 6);
     
     $("#carte-zoom a").attr("href", "javascript:void(0);");
@@ -51,6 +64,9 @@ function CarteObject () {
 	}
     });*/
     this.refreshEchelle();
+    
+
+    
     this.ready = true;
     
   };
@@ -65,6 +81,8 @@ function CarteObject () {
   this.setRASPLayer = function () {
     
     var utc = strPad(UI.Params.heure-UI.Params.tz, 2); 
+    
+
     var url="http://wms.meteo-parapente.com/"+UI.Params.run+"/"+UI.Params.date+utc+"0000/"+UI.Params.domain+"/"+UI.Params.param+"/${z}/${x}/${y}";
     UI.Params.noip ? url += "/noip.png" : url += "/tile.png";
     var RASPLayer = new OpenLayers.Layer.OSM("RASP", url, {tileOptions: {crossOriginKeyword: null}});
@@ -113,7 +131,7 @@ function CarteObject () {
     var pal = whichPalette(UI.Params.param);
     
     if (!pal) {
-       $("#legende-carte-scale").html("<p>Légende manquante pour ce paramètre.</p>");
+       $("#legende-carte-scale").html("<p>"+i18n("legende_manquante")+"</p>");
        return;
     }
     
@@ -134,7 +152,7 @@ function CarteObject () {
     if (typeof(G_vmlCanvasManager) != 'undefined')
       canvas = G_vmlCanvasManager.initElement(canvas);
     if (!canvas || !canvas.getContext || !canvas.getContext('2d').fillText) {
-      $("#legende-carte-scale").html('<p>Désolé, votre navigateur ne sait pas afficher la technologie "canvas"</p><p><a href="http://fr.wikipedia.org/wiki/Canvas_(HTML)" target="_blank">http://fr.wikipedia.org/wiki/Canvas_(HTML)</a></p><p>Il faut une version de Internet Explorer >= 9</p>');
+      $("#legende-carte-scale").html(i18n('nocanvas'));
       return;
     }
     
@@ -205,9 +223,9 @@ function CarteObject () {
     switch (pal) {
       case "PAL_ALTI":
 	if (UI.Params.param == "pblh") {
-	  unit="mètres<br>/ sol";
+	  unit=i18n("metres")+"<br>/ "+i18n("sol");
 	} else {
-	  unit="mètres<br>/ mer"; 
+	  unit=i18n("metres")+"<br>/ "+i18n("mer"); 
 	}
 	break;
       case "PAL_WIND":
@@ -226,10 +244,13 @@ function CarteObject () {
 	unit="cm/s";
 	break;
       case "PAL_CBASE":
-	unit="mètres<br>/ mer";
+	unit=i18n("metres")+"<br>/ "+i18n("mer"); 
+	break;
+      case "PAL_RAIN":
+	unit="mm<br>/hour";
 	break;
       default:
-	unit="sans<br>unité";
+	unit=i18n("sans_unite");
     }
     $("#legende-carte-unit").html(unit);
     
@@ -249,53 +270,53 @@ function CarteObject () {
       success: function (data) {
 	if (!data.status || data.status != "ok") {
 	  $("#popup-load").hide();
-	  $("#popup-txt").html("une erreur s'est produite :<br>"+data.message);
+	  $("#popup-txt").html(i18n("erreur_produite")+" :<br>"+data.message);
 	  return;
 	}
 	
-	var html = "<h3>Recherche : <i>"+data.q+"</i></h3>";
-	html += '<p style="color: red;font-size: small;">Pour l\'instant, la recherche est réstreinte à la France.</p>';
+	var html = "<h3>"+i18n("recherche")+" : <i>"+data.q+"</i></h3>";
+	html += '<p style="color: red;font-size: small;">'+i18n("recherche_que_france")+'</p>';
 	
-	html += "<h4>Décollages FFVL</h4>";
+	html += "<h4>"+i18n("decos_ffvl")+"</h4>";
 	if (!data.ffvld) {
-	  html += "<p><i>Pas de résultats</i></p>";
+	  html += "<p><i>"+i18n("pas_resultats")+"</i></p>";
 	} else {
 	  for (var i=0; i<data.ffvld.length; i++) {
 	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.ffvld[i].lat+','+data.ffvld[i].lon+');">'+data.ffvld[i].nom+'</a></p>';
 	  }
 	}
 	
-	html += "<h4>Attérros FFVL</h4>";
+	html += "<h4>"+i18n("atterros_ffvl")+"</h4>";
 	if (!data.ffvla) {
-	  html += "<p><i>Pas de résultats</i></p>";
+	  html += "<p><i>"+i18n("pas_resultats")+"</i></p>";
 	} else {
 	  for (var i=0; i<data.ffvla.length; i++) {
 	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.ffvla[i].lat+','+data.ffvla[i].lon+');">'+data.ffvla[i].nom+'</a></p>';
 	  }
 	}
 	
-	html += "<h4>Aérodromes</h4>";
+	html += "<h4>"+i18n("aerodromes")+"</h4>";
 	if (!data.aero) {
-	  html += "<p><i>Pas de résultats</i></p>";
+	  html += "<p><i>"+i18n("pas_resultats")+"</i></p>";
 	} else {
 	  for (var i=0; i<data.aero.length; i++) {
 	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.aero[i].lat+','+data.aero[i].lon+');">'+data.aero[i].nom+'</a></p>';
 	  }
 	}
 	
-	html += "<h4>Géographie</h4>";
+	html += "<h4>"+i18n("geographie")+"</h4>";
 	if (!data.osm) {
-	  html += "<p><i>Pas de résultats</i></p>";
+	  html += "<p><i>"+i18n("pas_resultats")+"</i></p>";
 	} else {
 	  for (var i=0; i<data.osm.length; i++) {
 	    html += '<p><a href="javascript:void(0);" onclick="Carte.rechercheOK('+data.osm[i].lat+','+data.osm[i].lon+');">'+data.osm[i].nom+'</a></p>';
 	  }
 	}
 	
-	html += "<hr><small><b>Sources des données :</b><br>";
+	html += "<hr><small><b>"+i18n("source_donnees_rech")+" :</b><br>";
 	html += 'FFVL : <a href="http://carte.ffvl.fr/?mode=parapente" target="_blank">http://carte.ffvl.fr/?mode=parapente</a><br>';
-	html += 'Aérodromes : <a href="http://www.jprendu.fr/aeroweb/" target="_blank">http://www.jprendu.fr/aeroweb/</a><br>';
-	html += 'Géographie : <a href="http://www.openstreetmap.fr/" target="_blank">OpenStreetMap</a> via <a href="http://developer.mapquest.com/web/products/open/nominatim/" target="_blank">MapQuest Nominatim</a>';
+	html += i18n("aerodromes") + ' : <a href="http://www.jprendu.fr/aeroweb/" target="_blank">http://www.jprendu.fr/aeroweb/</a><br>';
+	html += i18n("geographie") + ' : <a href="http://www.openstreetmap.fr/" target="_blank">OpenStreetMap</a> via <a href="http://developer.mapquest.com/web/products/open/nominatim/" target="_blank">MapQuest Nominatim</a>';
 	$("#popup-txt").html(html);
 	$("#popup-load").hide();
       }

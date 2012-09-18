@@ -1,44 +1,50 @@
 <?php
-header("Content-type: text/html; charset=utf-8");
+header('Content-type: text/html; charset=utf-8');
 function v ($fichier) {
   echo filemtime('.'.$fichier);
 }
+
+$is_index = true;
+include('i18n.php');
 ?>
 <!DOCTYPE html>
 <html>
   <head>
   
-    <title>Prévisions météo pour le Vol Libre - meteo-parapente.com - </title>
+    <title><?php echo i18n('titre') ?></title>
     
     <link rel="stylesheet" href="/css/style.css?_<?php v('/css/style.css');?>">
     
     <script type="text/javascript">
     document.write('<style type="text/css">#nojs { display: none; }</style>');
+    
+    var lang = "<?php echo $lang ?>";
     </script>
     
     <!--[if lt IE 8]><script type="text/javascript" src="/js/ie7.js?_<?php v('/js/ie7.js');?>"></script><![endif]-->
+    
     
   </head>
   <body>
     
     <div id="seo">
-      <h1>Météo-parapente.com - Météo pour le vol libre : parapente, deltaplanne.</h1>
-      <p>Météo-parapente.com est un site météo gratuit pour le vol libre et le parapente. Grace à l'association RASP France, qui utilisant le modèle RASP (regional atmospheric soaring prediction), nous vous donnons une prévision des ascendances thermiques, prévision du plafond, des émagrammes pour le parapente.</p>
+      <h1><?php echo i18n('seo_h1') ?></h1>
+      <p><?php echo i18n('seo_txt') ?></p>
     </div>
     
-    <div id="chargement">Chargement de l'application ...</div>
+    <div id="chargement"><?php echo i18n('chargement') ?></div>
 
     <div id="page">
     
       <div id="header">
-	<b><big>Prévisions météo pour le Vol Libre - <i>Expérimental</i></big></b>
-	<span id="langs"></span>
-	<div id="helpUs">
-	</div>
+	<b><big><?php echo i18n('header_titre') ?></big></b>
+	<span id="langs"></span><img src="/img/new.gif">
+	<div id="helpUs"></div>
 	
 	<div id="date-select">
             ...
-	  </div>
+	</div>
+	<a id="date-refresh" title="Check for updates"><img src="/img/refresh.png"></a>
       </div>
       
       
@@ -55,7 +61,7 @@ function v ($fichier) {
 	      <a id="select-hour-next">&gt;</a>
 	    </div>
 	    
-	    <a id="select-param"><span id="param-txt">Altitude Plafond Couche Conv</span> <img src="img/fleche-bas.gif"></a>
+	    <a id="select-param"><span id="param-txt"></span> <img src="img/fleche-bas.gif"></a>
 	    
 	    <div id="select-param-menu">
 	      <div id="param-list"></div>
@@ -73,7 +79,7 @@ function v ($fichier) {
 	      <a id="carte-zoom-plus">+</a>
 	      <a id="carte-zoom-moins">-</a>
 	    </div>
-	    <div id="carte-attrib">données géographiques &copy; <a href="http://www.openstreetmap.org/" target="_blank">les contributeurs d'OpenStreetMap</a>, licence <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC BY-SA</a></div>
+	    <div id="carte-attrib"><?php echo i18n('attrib_osm') ?></div>
 	  </div>
 	  <div id="bloc-carte-bas">
 	    <div id="legende-carte">
@@ -84,10 +90,10 @@ function v ($fichier) {
 	    
 	      <div id="legende-carte-unit"></div>
 	    
-	      <input type="checkbox" id="noipSwitch" name="noipSwitch" checked="checked"><label for="noipSwitch">Interpolation</label>
-	      <input type="checkbox" id="colorbindSwitch" name="colorbindSwitch" onclick="alert('Version daltonien pas encore dispo, désolé'); return false;"><label for="colorbindSwitch">Daltonien</label>
-	      <select onchange="Carte.setOpacity('RASP', this.value)" title="Transparence de la couche météo">
-		<option disabled="disabled" selected="selected">Météo</option>
+	      <input type="checkbox" id="noipSwitch" name="noipSwitch" checked="checked"><label for="noipSwitch"><?php echo i18n('interpolation') ?></label>
+	      <input type="checkbox" id="colorbindSwitch" name="colorbindSwitch" onclick="alert('<?php echo i18n('pas_encore_dispo') ?>'); return false;"><label for="colorbindSwitch"><?php echo i18n('daltonien') ?></label>
+	      <select onchange="Carte.setOpacity('RASP', this.value)" title="<?php echo i18n('transparence_couche') ?> <?php echo i18n('meteo') ?>">
+		<option disabled="disabled" selected="selected"><?php echo i18n('meteo') ?></option>
 		<option>10</option>
 		<option>9</option>
 		<option>8</option>
@@ -100,8 +106,8 @@ function v ($fichier) {
 		<option>1</option>
 		<option>0</option>
 	      </select>
-	      <select onchange="Carte.setOpacity('Relief NASA SRTM3', this.value)" title="Transparence de la couche relief">
-		<option disabled="disabled" selected="selected">Relief</option>
+	      <select onchange="Carte.setOpacity('Relief NASA SRTM3', this.value)" title="<?php echo i18n('transparence_couche') ?> <?php echo i18n('relief') ?>">
+		<option disabled="disabled" selected="selected"><?php echo i18n('relief') ?></option>
 		<option>10</option>
 		<option>9</option>
 		<option>8</option>
@@ -114,8 +120,8 @@ function v ($fichier) {
 		<option>1</option>
 		<option>0</option>
 	      </select>
-	      <select onchange="Carte.setOpacity('Cartographie OpenStreetMap', this.value)" title="Transparence de la couche Géographique">
-		<option disabled="disabled" selected="selected">Géo</option>
+	      <select onchange="Carte.setOpacity('Cartographie OpenStreetMap', this.value)" title="<?php echo i18n('transparence_couche') ?> <?php echo i18n('geo') ?>">
+		<option disabled="disabled" selected="selected"><?php echo i18n('geo') ?></option>
 		<option>10</option>
 		<option>9</option>
 		<option>8</option>
@@ -135,11 +141,13 @@ function v ($fichier) {
 	
 	<div id="bloc-details">
 	  <div id="bloc-details-tabs">
-	    <a id="tab-bulletin">Bulletin</a>
-	    <a id="tab-vent">Vent vs Alti</a>
-	    <a id="tab-emagramme">Emagramme</a>
-	    <a id="tab-aide">Aide</a>
-	    <a id="tab-avis">Votre Avis</a>
+	    
+	    <a id="tab-vent"><?php echo i18n('vent_vs_alti') ?></a>
+	    <a id="tab-emagramme"><?php echo i18n('emagramme') ?></a>
+	    <a id="tab-bulletin"><?php echo i18n('bulletin') ?></a>
+	    <a id="tab-aide"><?php echo i18n('aide') ?></a>
+	    <a id="tab-avis"><?php echo i18n('avis') ?></a>
+	    <!--<a id="tab-resume"><?php echo i18n('instabilite') ?>test</a>-->
 	  </div>
 	  <div id="bloc-details-load">
 	    <img src="/img/load.gif">
@@ -149,16 +157,16 @@ function v ($fichier) {
 	  </div>
 	  <div id="aide"></div>
 	  <div id="bloc-details-infos">
-	    <b>Prévisions pour le <span id="infos-date">...</span>, Modèle RASP (WRF-ARW) 2.5km, run <span id="infos-run">...</span></b><br>
+	    <b><?php echo i18n('infos_run') ?></b><br>
 	    <br>
-	      Données fournies par l'association <a href="http://rasp-france.org">RASP France</a> grâce à ses partenaires :<br>
+	      <?php echo i18n('infos_partenaires') ?><br>
 	      <i>
 	      <a href="http://ffvl.fr" target="_blank">Fédération Française de Vol Libre</a>, 
 	      Ligues de Vol Libre <a href="http://lravl.o2switch.net/lravl/" target="_blank">Rhône Alpes</a> et <a href="http://www.lvlpaca.org/" target="_blank">PACA</a>, 
 	      <a href="http://parapente.fr/" target="_blank">Airbulle</a>
 	      </i><br>
 	      <br>
-	      <a href="http://rasp-france.org/utiliser-les-donnees" target="_blank">Réutilisation des données</a> autorisée, sous licence Creative Commons : <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png">
+	      <?php echo i18n('infos_reutil') ?> <img src="/img/cc80x15.png">
 	  </div>
 	</div>
 	
@@ -185,6 +193,8 @@ function v ($fichier) {
     
     <!--[if lt IE 9]><script type="text/javascript" src="/js/flashcanvas.js?_<?php v('/js/flashcanvas.js');?>"></script><![endif]-->
    
+    <script src="/i18n.php?js&lang=<?php echo $lang ?>"></script>
+    
     <script src="http://openlayers.org/api/2.12/OpenLayers.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="/js/deps.php<?php if (array_key_exists('debug', $_GET)) echo '?debug'; ?>"></script>
@@ -192,29 +202,33 @@ function v ($fichier) {
     <script src="/config/couleurs.php"></script>
     <script src="/js/ui.php<?php if (array_key_exists('debug', $_GET)) echo '?debug'; ?>"></script>
     
+    
     <?php if (!array_key_exists('debug', $_GET)) { ?>
     <script type="text/javascript">
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33404916-1']);
-    _gaq.push(['_setDomainName', 'meteo-parapente.com']);
-    _gaq.push(['_trackPageview']);
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33404916-1']);
+      _gaq.push(['_setDomainName', 'meteo-parapente.com']);
+      _gaq.push(['_trackPageview']);
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-    </script>
-    <script type="text/javascript">
+
+  
       var uvOptions = {};
       (function() {
 	var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
 	uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/bZYqGPOXgyVT1Te3be3QiQ.js';
 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
       })();
+      
+        
     </script>
+    
   <?php } ?>
   </body>
 </html>

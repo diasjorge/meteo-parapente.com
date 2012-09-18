@@ -1,4 +1,4 @@
-function VentObject () {
+function ResumeObject () {
   
   this.box = {
     top: 0,
@@ -42,7 +42,7 @@ function VentObject () {
     this.box.h = this.h-this.box.top-this.box.bottom;
     this.colw = (this.w-this.box.left) /this.nh;    
     this.box.w = this.colw*this.nh;
-    this.kmOffset = this.box.h/4/1000;
+    this.kmOffset = this.box.h/6000;
 
     
     // Terrain
@@ -52,14 +52,53 @@ function VentObject () {
     this.c.fillStyle = "#ccc";
     this.c.fill();
     
+     // Température
+    var alty = new Array();
+    for (var iz=0; iz<this.nZ; iz++) {
+      var alti = UI.data[UI.Params.heure_start-UI.Params.tz]["z"][iz];
+      if (alti > 6000) break;
+      alty[iz] = this.box.top+this.box.h-this.kmOffset*alti;
+    }
+    for (var icol=0; icol<this.nh; icol++) {
+      var heure = UI.Params.heure_start+icol;
+      var heurez = heure-UI.Params.tz;
+      var left = this.box.left+this.colw*icol;
+      
+      for (var iz=0; iz<this.nZ; iz++) {
+	if (alty[iz] < 0) break;
+	
+	var dz = UI.data[heurez]["z"][iz+1]-UI.data[heurez]["z"][iz];
+	var dtc = UI.data[heurez]["tc"][iz+1]-UI.data[heurez]["tc"][iz];
+	
+	var instab = dtc/dz;
+	/*console.log(UI.data[heurez]["z"][iz]);
+	console.log(UI.data[heurez]["z"][iz+1]);
+	console.log(dz);
+	console.log(dtc);*/
+	console.log(instab);
+
+	var rgb = UI.GetRGB(-instab*400000, "PAL_ALTI");
+	this.c.beginPath();
+	this.c.rect(left, alty[iz], this.colw, alty[iz+1]-alty[iz]);
+	this.c.fillStyle = "rgba("+rgb.r+","+rgb.g+","+rgb.b+",1)";
+	this.c.fill();
+      }
+
+      this.c.font = "14px Arial";
+      this.c.textAlign = "center";
+      var heuretxt = heure + "h";
+      var milieu = left+this.colw/2;
+      this.c.fillText(heuretxt, milieu, this.h);
+    }
+    
     // couche convective
     for (var icol=0; icol<this.nh; icol++) {
       var heure = UI.Params.heure_start+icol-UI.Params.tz;
       var pblh = UI.data[heure]["pblh"]*this.kmOffset;
       var left = this.box.left+this.colw*icol;
       this.c.beginPath();
-      this.c.rect(left, this.box.top+this.box.h-ter, this.colw, -pblh);
-      this.c.fillStyle = "#ffff77";
+      this.c.rect(left, this.box.top+this.box.h-ter-pblh, this.colw, -2);
+      this.c.fillStyle = "black";
       this.c.fill();
     }
     
@@ -85,7 +124,7 @@ function VentObject () {
     this.c.fillStyle = "black";
     this.c.textAlign = "right";
         
-    for (var i=0; i<8 ;i++) {
+    for (var i=0; i<12 ;i++) {
       var alti = 500*i;
       var alti_top = this.box.top+this.box.h-this.kmOffset*alti;
       this.c.fillText(alti, alti_left, alti_top);
@@ -93,7 +132,7 @@ function VentObject () {
     this.c.fillText("Alti", alti_left, this.box.top+10);
     this.c.fillText("(m)", alti_left, this.box.top+25);
     
-    // vent
+    /*// vent
     this.c.fillStyle = "black";
     for (var icol=0; icol<this.nh; icol++) {
       var last = this.h;
@@ -103,7 +142,7 @@ function VentObject () {
       this.c.textAlign = "left";
       for (var iz=0; iz<this.nZ; iz++) {
 	var alti = UI.data[UI.Params.heure_start-UI.Params.tz]["z"][iz];
-	if (alti > 4000) break;
+	if (alti > 6000) break;
 	var alti_top = this.box.top+this.box.h-this.kmOffset*alti;
 	if (last-alti_top < 10) continue;
 	last = alti_top;
@@ -137,7 +176,7 @@ function VentObject () {
       this.c.textAlign = "center";
       var heuretxt = heure + "h";
       this.c.fillText(heuretxt, milieu, this.h);
-    }
+    }*/
     
         
     // titre
@@ -151,7 +190,7 @@ function VentObject () {
     $("#bloc-details-load").hide();
   };
  
-  this.fleche = function (f) {
+  /*this.fleche = function (f) {
     this.c.save();
     this.c.translate(f.x-f.s/2, f.y-f.s/2);
     this.c.rotate(f.a);
@@ -174,7 +213,7 @@ function VentObject () {
     this.c.strokeStyle=f.color;
     this.c.stroke();
     this.c.restore();
-  };
+  };*/
 
   this.refresh = function () {
     
@@ -190,7 +229,7 @@ function VentObject () {
     var newDessin = false;
     var newData = false;
     
-    if (this.lat != UI.Params.lat || this.lon != UI.Params.lon || this.run != UI.Params.run || this.date != UI.Params.date  || UI.Params.tabObject != "vent") {
+    if (this.lat != UI.Params.lat || this.lon != UI.Params.lon || this.run != UI.Params.run || this.date != UI.Params.date  || UI.Params.tabObject != "resume") {
       newData = newDessin = true;
     }
     
@@ -201,7 +240,7 @@ function VentObject () {
     if (newDessin) {
       $("#bloc-details-load").show();
       //$("#bloc-details-main").empty();
-      UI.Params.tabObject = "vent";
+      UI.Params.tabObject = "resume";
       this.lat = UI.Params.lat;
       this.lon = UI.Params.lon;
       this.w = w;
@@ -209,15 +248,15 @@ function VentObject () {
       this.date = UI.Params.date;
       this.run = UI.Params.run;
       if (newData) {
-	Vent.getNewData();
+	Resume.getNewData();
       } else {
-	Vent.draw();
+	Resume.draw();
       }
     }
   };
   
   this.getNewData = function() {
-    var params = "z;umet;vmet;ter;pblh";
+    var params = "z;tc;ter;pblh";
     var heures ="";
     
     var hmax = UI.Params.heure_stop+1;
@@ -229,15 +268,15 @@ function VentObject () {
       if (jqxhr.status != 200) return UI.erreur(jqxhr.status+" : "+textStatus);
       if (!data) return UI.erreur(i18n("chargement_echoue"));
       if (data.status != "ok") return UI.erreur(i18n("chargement_echoue")+"<br>"+data.status+" : "+data.message);
-      UI.Params.location = data[Vent.lat+','+Vent.lon]["gridCoords"]["location"];
-      UI.data = data[Vent.lat+','+Vent.lon][UI.Params.date];
-      UI.Params.lat = data[Vent.lat+','+Vent.lon]["gridCoords"]["lat"];
-      UI.Params.lon = data[Vent.lat+','+Vent.lon]["gridCoords"]["lon"];
-      Vent.nZ = UI.data[UI.Params.heure_start-UI.Params.tz]["z"].length;
-      Vent.lat = UI.Params.lat;
-      Vent.lon = UI.Params.lon;
+      UI.Params.location = data[Resume.lat+','+Resume.lon]["gridCoords"]["location"];
+      UI.data = data[Resume.lat+','+Resume.lon][UI.Params.date];
+      UI.Params.lat = data[Resume.lat+','+Resume.lon]["gridCoords"]["lat"];
+      UI.Params.lon = data[Resume.lat+','+Resume.lon]["gridCoords"]["lon"];
+      Resume.nZ = UI.data[UI.Params.heure_start-UI.Params.tz]["z"].length;
+      Resume.lat = UI.Params.lat;
+      Resume.lon = UI.Params.lon;
       Carte.updateZone();
-      Vent.draw();
+      Resume.draw();
     });
   };
   
@@ -245,4 +284,4 @@ function VentObject () {
   
 };
 
-var Vent = new VentObject();
+var Resume = new ResumeObject();

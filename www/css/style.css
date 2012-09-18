@@ -59,7 +59,17 @@ img {
   margin-right: 4px;
   padding: 4px;
 }
-
+#date-refresh {
+  position: relative;
+  top: 10px;
+  padding: 4px;
+}
+#date-refresh:hover {
+ background-color: #0033CC;
+}
+#date-refresh img {
+  vertical-align: middle;
+}
 #date-select a, #bloc-details-tabs a {
   background-color: #ccc;
   color: black;
@@ -512,4 +522,28 @@ img {
 
 #seo {
   display: none;
+}
+
+#export {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  z-index: 99999;
+}
+
+a.incomplete, a.incomplete:hover  {
+  background-color: #ccc !important;
+  color: #0033CC !important;
+  position: relative;
+  z-index: 0;
+  text-decoration: none !important;
+}
+
+.progress {
+  position: absolute;
+  left:0px;
+  bottom:0px;
+  height: 6px;
+  background-color: #0033CC;
+  z-index: 1;
 }

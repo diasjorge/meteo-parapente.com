@@ -74,7 +74,7 @@ function UIObject() {
       this.Params.run = run;
       $("#infos-date").html(date);
       $("#infos-run").html(run);
-      $("#select-hour").attr("title", "Heure locale Paris (UTC+"+UI.Params.tz+")");
+      $("#select-hour").attr("title", i18n("heure_locale")+" (UTC+"+UI.Params.tz+")");
       Carte.refreshRASPLayer();
       this.refreshDetails();
     }
@@ -140,6 +140,13 @@ function UIObject() {
 	}
 	Ema.refresh();
 	break;
+      case "resume":
+	if (lonlat) {
+	  UI.Params.lat = lonlat.lat;
+	  UI.Params.lon = lonlat.lon;
+	}
+	Resume.refresh();
+	break;
       case "vent":
 	if (lonlat) {
 	  UI.Params.lat = lonlat.lat;
@@ -149,13 +156,13 @@ function UIObject() {
 	break;
       default:
 	this.Params.tabObject="";
-	$("#bloc-details-main").html("<p>Fonction en travaux... pas encore disponible.</p>");
+	$("#bloc-details-main").html("<p>"+i18n("pas_encore_dispo")+"</p>");
 	break;
     }
   };
   
   this.getData = function (heures, params, callback) {
-    var url = "http://data3.rasp-france.org/json.php";
+    var url = "http://data2.rasp-france.org/json.php";
     $.ajax({
       url: url,
       dataType: 'jsonp',
@@ -172,7 +179,7 @@ function UIObject() {
   };
   
   this.erreur = function (msg) {
-    $("#bloc-details-main").html("<p>Une erreur s'est produite !</p><p><small>"+msg+"</small></p>");
+    $("#bloc-details-main").html("<p>"+i18n("erreur_produite")+"</p><p><small>"+msg+"</small></p>");
     $("#bloc-details-load").hide();
     return false;
   };
@@ -189,7 +196,7 @@ function UIObject() {
     
     
     $("#aide").show();
-    $("#aide").html($("#helpParams #help-params-"+page).html());
+    $("#aide").html(i18n("help_"+page));
     
   };
   
@@ -239,6 +246,10 @@ function UIObject() {
     $("#infos-date").html(UI.Params.date);
     $("#infos-run").html(UI.Params.run);
     $("#select-hour").attr("title", "Heure locale Paris (UTC+"+UI.Params.tz+")");
+    $("#date-refresh").attr("href", "javascript:void(0);");
+    $("#date-refresh").click(function () {
+      UI.refreshRuns();
+    });
     
     // Init tabs
     $("#bloc-details-tabs a").attr("href", "javascript:void(0);");
@@ -288,9 +299,6 @@ function UIObject() {
       Carte.refreshRASPLayer();
     });
     
-    // init Help
-    $("#helpParams").load("/aide/params.html");
-    
     
     // init popup
     $("#popup-button").click(function() {
@@ -329,6 +337,8 @@ function UIObject() {
     // init carte
     Carte.Init();
     
+    $("#param-txt").html(i18n("pbltop_label"));
+    
     // init recherche
     $("#carte-search-go").attr("href", "javascript:void(0);");
     $("#carte-search-go").click(function() {
@@ -350,6 +360,85 @@ function UIObject() {
     $("#chargement").hide();
   };
   
+  this.refreshRuns = function (is_startup) {
+    
+    if (is_startup == "undefined")  is_startup = false;
+    $("#date-select").html("...");
+    $.ajax({
+      url: "http://data2.rasp-france.org/status.php",
+      dataType: "jsonp",
+      success: function (data) {
+	$("#date-select").empty();
+	//var nruns = data[UI.Params.domain].length;
+	var max = 6;
+	var days = [];
+	var processing = false;
+	
+	for (var i=0; i<max; i++) {
+	  if (!data[UI.Params.domain][i]) break;
+	  
+	  var dA = data[UI.Params.domain][i]["day"].substr(0,4);
+	  var dM = data[UI.Params.domain][i]["day"].substr(4,2);
+	  var dJ = data[UI.Params.domain][i]["day"].substr(6,2);
+	  //var runH = data[UI.Params.domain][i]["run"].substr(8,2);
+	  var date = new Date(dA, dM-1, dJ);
+	  var today = new Date();
+	  var needrefresh = false;
+
+	  
+	  var jour = Semaine[date.getDay()];
+	  
+	  if (data[UI.Params.domain][i]["status"] == "complete") { 
+	    
+	    if (!days[data[UI.Params.domain][i]["day"]]) {
+	      days[data[UI.Params.domain][i]["day"]] = true;
+	    } else {
+	      continue;
+	    }
+	    
+	    if (date.getDay() == today.getUTCDay()) {
+	      if (is_startup) {
+		UI.Params.date = data[UI.Params.domain][i]["day"];
+		UI.Params.run = data[UI.Params.domain][i]["run"];
+	      } else if ((UI.Params.date != data[UI.Params.domain][i]["day"]) || (UI.Params.run != data[UI.Params.domain][i]["run"])) {
+		  needrefresh = {
+		    date: data[UI.Params.domain][i]["day"],
+		    run: data[UI.Params.domain][i]["run"]
+		  };
+	      }
+	    }
+	    
+	    
+	    var link = $("<a>"+jour+"</a>");
+	    //var link = $("<a>"+jour+" ("+runH+"z)</a>");
+	    link.attr("id", "date-select-"+data[UI.Params.domain][i]["run"]+"-"+data[UI.Params.domain][i]["day"]);
+	    link.attr("onclick", "UI.switchDate("+data[UI.Params.domain][i]["run"]+", "+data[UI.Params.domain][i]["day"]+");");
+	    link.attr("href", "javascript:void(0);");
+	    if ((UI.Params.date == data[UI.Params.domain][i]["day"]) && (UI.Params.run == data[UI.Params.domain][i]["run"])) {
+	      link.addClass("selected");
+	    }
+	    $("#date-select").prepend(link);
+	  } else {
+	    if (processing) continue;
+	    processing = true;
+	    var progress = data[UI.Params.domain][i]["status"];
+	    var link = $('<a class="incomplete"><div class="progress" style="width: '+progress+';"></div><span style="position:relative;z-index: 5;">Updating '+jour+" "+progress+"</span> </a>");
+	    $("#date-select").prepend(link);
+	    max++
+	  }
+	}
+	if (is_startup) {
+	  UI.Init();
+	} else if (needrefresh) {
+	  UI.switchDate(needrefresh.run, needrefresh.date);
+	}
+      }
+      
+    });
+    
+  };
+  
+  
 };
 
 var UI = new UIObject();
@@ -357,17 +446,21 @@ var UI = new UIObject();
 $(document).ready(function () {
   
     // init lang
-    var langs = ["fr","en","nl","de","it","es","cat"];
-    var coming = ["fr","Coming soon...","Binnenkort...","Demnächst...","In arrivo...","Próximamente...","Properament..."];
+    //var langs = ["fr","en","nl","de","it","es","cat"];
+    var langs = ["fr","en"];
+    
+    if (lang != 'fr' && lang != 'en') {
+      alert(lang.toUpperCase()+' translation is still incomplete. Could you help me translate ?');
+    }
+    
     for (var i=0; i<langs.length; i++) {
       var btn = $("<a></a>");
       btn.attr("id", "lang-"+langs[i]);
-      if (i != 0) {
-	btn.attr("title", coming[i]);
-      } else {
-	btn.attr("href", "javascript:void(0);");
+      btn.attr("href", "/?lang="+langs[i]);
+      if (langs[i] == lang) {
 	btn.addClass("selected");
       }
+      
       var img = $("<img></img>");
       img.attr("src", "/img/flag_"+langs[i]+".png");
       img.attr("alt", langs[i]);
@@ -376,49 +469,8 @@ $(document).ready(function () {
       $("#langs").append("&nbsp;");
     }
   
-  // Init date select
-  $.ajax({
-    url: "http://data3.rasp-france.org/status.php",
-    dataType: "jsonp",
-    success: function (data) {
-      $("#date-select").empty();
-      //var nruns = data["france"].length;
-      var max = 2;
-      for (var i=0; i<max; i++) {
-	if (!data["france"][i]) break;
-	if (data["france"][i]["status"] == "complete") { 
-	  if (UI.Params.date == "") {
-	    UI.Params.date = data["france"][i]["day"];
-	    UI.Params.run = data["france"][i]["run"];
-	  }
-	  var dA = data["france"][i]["day"].substr(0,4);
-	  var dM = data["france"][i]["day"].substr(4,2);
-	  var dJ = data["france"][i]["day"].substr(6,2);
-	  var date = new Date(dA, dM-1, dJ);
-	  var jour = Semaine[date.getDay()];
-	  var calcul;
-	  switch (data["france"][i]["run"].substr(8,2)) {
-	    case "06":
-	      calcul = "soir";
-	      break;
-	    case "18":
-	      calcul = "matin";
-	      break;
-	  }
-	  var link = $("<a>"+jour+" "+dJ+" (calcul "+calcul+")</a>");
-	  link.attr("id", "date-select-"+data["france"][i]["run"]+"-"+data["france"][i]["day"]);
-	  link.attr("onclick", "UI.switchDate("+data["france"][i]["run"]+", "+data["france"][i]["day"]+");");
-	  link.attr("href", "javascript:void(0);");
-	  $("#date-select").prepend(link);
-	} else {
-	  max++
-	}
-      }
-      UI.Init();
-    }
-    
-  });
-
+  UI.refreshRuns(true);
+  
   
 });
 
@@ -431,4 +483,4 @@ function strPad (i,l,s) {
 	return o;
 };
 
-Semaine = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"]
+Semaine = [i18n("dimanche"),i18n("lundi"),i18n("mardi"),i18n("mercredi"),i18n("jeudi"),i18n("vendredi"),i18n("samedi")]

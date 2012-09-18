@@ -1,6 +1,6 @@
 <?php
 
-$files = array('carte', 'global', 'emagramme', 'vent', 'ui');
+$files = array('carte', 'global', 'emagramme', 'vent', 'resume', 'ui');
 
 $scripts_dir = '../../js/ui/';
 $cache_dir = '../../cache/';

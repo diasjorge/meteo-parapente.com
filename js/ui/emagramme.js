@@ -30,7 +30,7 @@ function EmagrammeObject () {
     if (typeof(G_vmlCanvasManager) != 'undefined')
       canvas = G_vmlCanvasManager.initElement(canvas);
     if (!canvas || !canvas.getContext || !canvas.getContext('2d').fillText) {
-      $("#bloc-details-main").html('<p>Désolé, votre navigateur ne sait pas afficher la technologie "canvas"</p><p><a href="http://fr.wikipedia.org/wiki/Canvas_(HTML)" target="_blank">http://fr.wikipedia.org/wiki/Canvas_(HTML)</a></p><p>Il faut une version de Internet Explorer >= 9</p>');
+      $("#bloc-details-main").html(i18n('nocanvas'));
       return;
     }
     
@@ -139,7 +139,7 @@ function EmagrammeObject () {
     var h = $("#bloc-details-main").height();
 
     if (UI.Params.lat == 999 || UI.Params.lon == 999) {
-      $("#bloc-details-main").html("<p>Pour afficher l'emagramme, cliquez d'abord un point sur la carte.</p>");
+      $("#bloc-details-main").html("<p>"+i18n("click_a_point")+"</p>");
       UI.Params.tabObject = "";
       return;
     }
@@ -180,8 +180,8 @@ function EmagrammeObject () {
     
     UI.getData(heures, params, function(data, textStatus, jqxhr) {
       if (jqxhr.status != 200) return UI.erreur(jqxhr.status+" : "+textStatus);
-      if (!data) return UI.erreur("Le chargement des données a échoué");
-      if (data.status != "ok") return UI.erreur("Le chargement des données a échoué<br>"+data.status+" : "+data.message);
+      if (!data) return UI.erreur(i18n("chargement_echoue"));
+      if (data.status != "ok") return UI.erreur(i18n("chargement_echoue")+"<br>"+data.status+" : "+data.message);
       UI.Params.location = data[Ema.lat+','+Ema.lon]["gridCoords"]["location"];
       UI.data = data[Ema.lat+','+Ema.lon][UI.Params.date][UI.Params.heure-UI.Params.tz];
       UI.Params.lat = data[Ema.lat+','+Ema.lon]["gridCoords"]["lat"];
