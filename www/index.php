@@ -5,6 +5,7 @@ function v ($fichier) {
 }
 
 $is_index = true;
+$icare = array_key_exists('icare', $_GET);
 include('i18n.php');
 ?>
 <!DOCTYPE html>
@@ -13,12 +14,13 @@ include('i18n.php');
   
     <title><?php echo i18n('titre') ?></title>
     
-    <link rel="stylesheet" href="/css/style.css?_<?php v('/css/style.css');?>">
+    <link rel="stylesheet" href="<?php if ($icare) echo '/icare' ?>/css/style.css?_<?php v('/css/style.css');?>">
     
     <script type="text/javascript">
     document.write('<style type="text/css">#nojs { display: none; }</style>');
     
     var lang = "<?php echo $lang ?>";
+    var icare = <?php $icare ? print 'true' : print 'false'; ?>;
     </script>
     
     <!--[if lt IE 8]><script type="text/javascript" src="/js/ie7.js?_<?php v('/js/ie7.js');?>"></script><![endif]-->
@@ -37,9 +39,11 @@ include('i18n.php');
     <div id="page">
     
       <div id="header">
-	<b><big><?php echo i18n('header_titre') ?></big></b>
-	<span id="langs"></span><img src="/img/new.gif">
-	<div id="helpUs"></div>
+	<b><big><?php $icare ? print 'http://meteo-parapente.com/icare/' : print i18n('header_titre'); ?></big></b>
+	<span id="langs"></span><?php if (!$icare) echo '<img src="/img/new.gif">' ?>
+	<div id="helpUs">
+	  <?php if (array_key_exists('icare', $_GET)) echo '<img src="/icare/img/elephant.png">' ?>
+	</div>
 	
 	<div id="date-select">
             ...

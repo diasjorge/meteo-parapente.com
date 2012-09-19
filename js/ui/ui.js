@@ -369,12 +369,12 @@ function UIObject() {
       dataType: "jsonp",
       success: function (data) {
 	$("#date-select").empty();
-	//var nruns = data[UI.Params.domain].length;
-	var max = 6;
+	var nruns = data[UI.Params.domain].length;
+	//var max = 6;
 	var days = [];
 	var processing = false;
-	
-	for (var i=0; i<max; i++) {
+	//for (var i=0; i<max; i++) {
+	for (var i=0; i<nruns; i++) {
 	  if (!data[UI.Params.domain][i]) break;
 	  
 	  var dA = data[UI.Params.domain][i]["day"].substr(0,4);
@@ -424,7 +424,7 @@ function UIObject() {
 	    var progress = data[UI.Params.domain][i]["status"];
 	    var link = $('<a class="incomplete"><div class="progress" style="width: '+progress+';"></div><span style="position:relative;z-index: 5;">Updating '+jour+" "+progress+"</span> </a>");
 	    $("#date-select").prepend(link);
-	    max++
+	    //max++
 	  }
 	}
 	if (is_startup) {
