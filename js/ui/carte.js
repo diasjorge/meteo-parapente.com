@@ -43,9 +43,14 @@ function CarteObject () {
     var scaleline = new OpenLayers.Control.ScaleLine();
     this.map.addControl(scaleline);
 
-    var center = new OpenLayers.LonLat(2.5,46.5).transform(this.wgs84,this.mercator);
-    this.map.setCenter(center, 6);
-    
+    var center;
+    if (icare) {
+      center = new OpenLayers.LonLat(5.9,45.3).transform(this.wgs84,this.mercator);
+      this.map.setCenter(center, 9);
+    } else {
+      center = new OpenLayers.LonLat(2.5,46.5).transform(this.wgs84,this.mercator);
+      this.map.setCenter(center, 6); 
+    }
     $("#carte-zoom a").attr("href", "javascript:void(0);");
     $("#carte-zoom-plus").click(function() {
       Carte.map.zoomIn();
@@ -82,8 +87,13 @@ function CarteObject () {
     
     var utc = strPad(UI.Params.heure-UI.Params.tz, 2); 
     
-
-    var url="http://wms.meteo-parapente.com/"+UI.Params.run+"/"+UI.Params.date+utc+"0000/"+UI.Params.domain+"/"+UI.Params.param+"/${z}/${x}/${y}";
+    var serveur;
+    if (icare) {
+      serveur = "http://euro2012.meteo-parapente.com/map.php?tile=";
+    } else {
+      serveur = "http://wms.meteo-parapente.com/";
+    }
+    var url=serveur+UI.Params.run+"/"+UI.Params.date+utc+"0000/"+UI.Params.domain+"/"+UI.Params.param+"/${z}/${x}/${y}";
     UI.Params.noip ? url += "/noip.png" : url += "/tile.png";
     var RASPLayer = new OpenLayers.Layer.OSM("RASP", url, {tileOptions: {crossOriginKeyword: null}});
     RASPLayer.setOpacity(UI.Params.opacity);

@@ -162,7 +162,12 @@ function UIObject() {
   };
   
   this.getData = function (heures, params, callback) {
-    var url = "http://data2.rasp-france.org/json.php";
+    var url;
+    if (icare) {
+      url = "http://euro2012.meteo-parapente.com/json.php";
+    } else {
+      url = "http://data2.rasp-france.org/json.php";
+    }
     $.ajax({
       url: url,
       dataType: 'jsonp',
@@ -239,7 +244,7 @@ function UIObject() {
     return rgb;
   };
   
-  this.Init = function () {
+  this.Init = function () {    
     
     // Init date
     $("#date-select-"+UI.Params.run+"-"+UI.Params.date).addClass("selected");
@@ -364,8 +369,17 @@ function UIObject() {
     
     if (is_startup == "undefined")  is_startup = false;
     $("#date-select").html("...");
+    
+    var url;
+    
+    if (icare) {
+      url = "http://euro2012.meteo-parapente.com/status.php";
+    } else {
+      url = "http://data2.rasp-france.org/status.php";
+    }
+    
     $.ajax({
-      url: "http://data2.rasp-france.org/status.php",
+      url: url,
       dataType: "jsonp",
       success: function (data) {
 	$("#date-select").empty();
@@ -444,7 +458,8 @@ function UIObject() {
 var UI = new UIObject();
 
 $(document).ready(function () {
-  
+      if (icare)  UI.Params.domain = "icare";
+
     // init lang
     //var langs = ["fr","en","nl","de","it","es","cat"];
     var langs = ["fr","en"];
@@ -456,7 +471,7 @@ $(document).ready(function () {
     for (var i=0; i<langs.length; i++) {
       var btn = $("<a></a>");
       btn.attr("id", "lang-"+langs[i]);
-      btn.attr("href", "/?lang="+langs[i]);
+      btn.attr("href", "?lang="+langs[i]);
       if (langs[i] == lang) {
 	btn.addClass("selected");
       }

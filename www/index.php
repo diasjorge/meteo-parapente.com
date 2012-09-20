@@ -65,7 +65,7 @@ include('i18n.php');
 	      <a id="select-hour-next">&gt;</a>
 	    </div>
 	    
-	    <a id="select-param"><span id="param-txt"></span> <img src="img/fleche-bas.gif"></a>
+	    <a id="select-param"><span id="param-txt"></span> <img src="/img/fleche-bas.gif"></a>
 	    
 	    <div id="select-param-menu">
 	      <div id="param-list"></div>
@@ -157,11 +157,20 @@ include('i18n.php');
 	    <img src="/img/load.gif">
 	  </div>
 	  <div id="bloc-details-main">
-	    <iframe frameborder="0" src="/welcome.html?_<?php v('/welcome.html');?>"></iframe>
+	    <?php if ($icare) {
+	      $file = "/icare/welcome.html";
+	    } else {
+	      $file = "/welcome.html";
+	    }
+	    ?>
+	    <iframe frameborder="0" src="<?php echo $file;?>?_<?php v("/$file.html");?>"></iframe>
 	  </div>
 	  <div id="aide"></div>
 	  <div id="bloc-details-infos">
-	    <b><?php echo i18n('infos_run') ?></b><br>
+	    <b><?php
+	    $res = $icare ? "1.8km" : "2.5km";
+	    echo str_replace('XXkm', $res, i18n('infos_run'));
+	    ?></b><br>
 	    <br>
 	      <?php echo i18n('infos_partenaires') ?><br>
 	      <i>
