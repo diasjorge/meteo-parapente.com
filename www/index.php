@@ -163,7 +163,7 @@ include('i18n.php');
 	      $file = "/welcome.html";
 	    }
 	    ?>
-	    <iframe frameborder="0" src="<?php echo $file;?>?_<?php v("/$file.html");?>"></iframe>
+	    <iframe frameborder="0" src="<?php echo $file;?>?_<?php v("/$file");?>"></iframe>
 	  </div>
 	  <div id="aide"></div>
 	  <div id="bloc-details-infos">
