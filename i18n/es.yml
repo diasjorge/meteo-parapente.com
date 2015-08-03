@@ -1,0 +1,219 @@
+es:
+  index:
+    titre: Previsión del tiempo para el vuelo libre - meteo-parapente.com
+    seo_h1: "Météo-parapente.com - El tiempo para el vuelo libre: parapente, deltaplanne."
+    seo_txt: Météo-parapente.com es un sitio gratuito para el vuelo libre y
+      parapente. Gracias a la asociación ESCOFINA Francia, utilizando el modelo ESCOFINA (Regional
+      alza la predicción atmosférica), le damos una previsión de ascendencias
+      térmica, techo pronosticado, émagrammes para el parapente.
+    chargement: Cargando la aplicación ...
+    header_titre: Previsión del tiempo para el vuelo libre - <i> Experimental </i>
+    attrib_osm: Datos Geográficos &copy; <a href="http://www.openstreetmap.org/"
+      target="_blank">colaboradores de OpenStreetMap</a>, licencia <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+      target="_blank">CC BY-SA</a>
+    interpolation: Interpolación
+    pas_encore_dispo: Función aún no disponible. Lo siento.
+    daltonien: Daltónico
+    transparence_couche: Transparencia de la capa
+    meteo: Meteo
+    relief: Relieve
+    geo: Géo
+    instabilite: Inestabilidad
+    vent_vs_alti: Viento / Alti
+    emagramme: Emagrama
+    bulletin: Boletín
+    aide: Ayuda
+    avis: Su Opinión
+    infos_run: Previsiones para <span id="infos-date">...</span>, Modèle RASP (WRF-ARW)
+      XXkm, run <span id="infos-run">...</span>
+    infos_partenaires: 'Los datos son facilitados por la asociación <a href="http://rasp-france.org"
+      target="_blank">RASP France</a> a través de sus socios :'
+    infos_reutil: <a href="http://rasp-france.org/utiliser-les-donnees" target="_blank">Reutilización
+      de datos</a> autorizada, bajo licencia Creative Commons
+  js:
+    heure_locale: Hora local en Francia
+    pas_encore_dispo: Función aún no disponible.
+    erreur_produite: Se ha producido un error!
+    lundi: Lunes
+    mardi: Martes
+    mercredi: Miércoles
+    jeudi: Jueves
+    vendredi: Viernes
+    samedi: Sábado
+    dimanche: Domingo
+    nocanvas: <p>Lo sentimos, su navegador no puede mostrar la tecnología "canvas"</p><p><a
+      href="http://es.wikipedia.org/wiki/Canvas_(HTML)" target="_blank">http://es.wikipedia.org/wiki/Canvas_(HTML)</a></p><p>Necesita actualizar a Google Chrome, Mozilla Firefox, or Internet Explorer >= 9</p>
+    metres: metros
+    sol: suelo
+    mer: mar
+    sans_unite: sin<br>unidad
+    recherche: Buscar
+    recherche_que_france: Por el momento, la búsqueda se limita a Francia.
+    decos_ffvl: Despegues FFVL
+    atterros_ffvl: Aterrizajes FFVL
+    aerodromes: Aeródromos
+    geographie: Geografía
+    pas_resultats: No hay resultados
+    source_donnees_rech: Fuentes de datos
+    legende_manquante: Falta leyenda para este parámetro.
+    click_a_point: Haga clic en un punto en el mapa para ver los detalles.
+    chargement_echoue: Error cargando datos
+    thermiques: Térmicas
+    vent: Viento
+    couche_conv: Capa convectiva
+    nebulosite: Nubosidad
+    divers: Varios
+    wstar_label: Velocidad media térmica
+    bsratio_label: Flotabilidad / Cizalla
+    windblavg_label: Media del viento capa conv.
+    windbltop_label: Viento superior capa conv.
+    blwindshear_label: Cizalla Vertical
+    wblmaxmin_label: Movimientos verticales
+    pblh_label: Espesor de la capa convectiva
+    pbltop_label: Elevación techo capa conv.
+    cfrach_label: Nubes altas
+    cfracm_label: Nubes medias
+    cfracl_label: Nubes bajas
+    tc2_label: Temperatura a 2m
+    ter_label: Modelo de Topografía
+    help_wstar: |-
+      <h3> Velocidad media de térmicas </h3>
+      <p>
+      Elevación térmica media.
+      </p>
+      <p>
+      Estamos hablando de térmicas puras, secas, en la ausencia de nubes.
+      Reste la velocidad de caída de la vela para la velocidad "vario".
+      </p>
+      <p>
+      Si las nubes convectivas están presentes, las térmicas serán más fuertes debido a que la condensación de las nubes amplifica la ascendencia.
+      </p>
+      <p>W* depende tanto del calentamiento de la superficie como lo profundidad de la capa convectiva.</p>
+    help_bsratio: |-
+      <h3>Radio Flotabilidad/Cizallamiento</h3>
+      <p>
+      A veces el viento no es homogéneo en la capa convectiva.
+      Se produce un efecto de cizallamiento. Este fenómeno distorsiona las "columnas" de la térmica, "cortando" en pequeños trozos ... Así que hacen las ascendencias difíciles o imposibles de manejar.
+      </p>
+      <p>
+      Este parámetro es la relación entre la velocidad de la térmica y la amplitud de la cizalla.
+      Es un valor empírico que nos permite determinar la forma de calor. Cada uno debe determinar su límite, en función de lo que investigue y su nivel. Se puede tomar 5 como valor de referencia, por debajo del cual las térmicas son difíciles de aprovechar.
+      </p>
+    help_windblavg: |-
+      <h3>Media del viento en la capa convectiva</h3>
+      <p>
+      Tomamos la capa convectiva, y se promedia (vectorialmente) el viento en todas las altitudes. <b> Esto no es el viento en el suelo. Es el viento "en el aire".</b>
+      </p>
+      <p>
+      Si los vientos son demasiado diferentes en la CC, esta indicación puede distorsionarse. En este caso, consulte el gráfico "Viento vs Altitud" para comprender mejor la distribución en y por encima de la capa convectiva.
+      </p>
+    help_windbltop: |-
+      <h3>Viento en la parte superior de la capa convectiva</h3>
+      <p>
+      Viento en la parte superior de la capa convectiva.
+      </p>
+      <p>
+      A menudo es diferente viento se puede sentir la tierra o en vuelo.
+      </p>
+      <p>
+      Ver el gráfico "Viento vs Altitud" para entender mejor la distribución en y por encima de la capa convectiva.
+      </p>
+    help_blwindshear: |-
+      <h3>Cizallamiento del viento, en la CC.</h3>
+      <p>
+      A veces el viento no es homogéneo en la capa convectiva.
+      Este parámetro calcula la amplitud de la velocidad del viento entre las diferentes alturas de la capa convectiva.
+      </p>
+      <p>
+      Esto nos permite detectar una posible cizalla. Esto es directamente visible en el gráfico "Viento vs altitud". Además, mientas el viento medio sea más alto, tales diferencias pueden ser más importantes.
+      </p>
+      <p>
+      Este fenómeno de cizallamiento tiene una influencia sobre la calidad de las térmicas. (Consulte "Térmicas&gt; flotabilidad / cizalla")
+      </p>
+    help_wblmaxmin: |-
+      <h3>Movimientos verticales en la CC (convergencia).</h3>
+      <p>
+      Amplitud de movimientos verticales en la capa convectiva.
+      Es local y relativamente dificil de predecir con mucha precisión.
+      </p>
+      <p>
+      Este fenómeno es especialmente creado por la convergencia de vientos horizontales
+      </p>
+      <p>
+      Convergencia y alta CAPE, puede desencadenar tormentas.
+      </p>
+      <p>
+      Convergencia negativa (divergencia) produce un movimiento vertical persistente, la creación de inversiones bajas, lo que limitará el techo de las térmicas.
+      </p>
+      <p>
+      En algunos casos, podemos ver aparecer la brisa del mar.
+      </p>
+    help_pblh: |-
+      <h3> Espesor de la capa convectiva.</h3>
+      <p>
+      Esta es la zona en que se produce el intercambio de calor con el suelo.
+      A térmicas más potentes, la capa convectiva será de mayor espesor.
+      </p>
+      <p>
+      Usted se dará cuenta en el "viento vs altitud", que el viento suele ser diferente en esta área (en amarillo).
+      </p>
+    help_pbltop: |-
+      <h3>Techo de la capa convectiva.</h3>
+      <p>
+      Altitud del techo de la capa convectiva. Es el promedio del techo térmico puro.
+      </p>
+      <p>
+      Por encima de un terreno plano, la altitud máxima será menor debido a la velocidad de caída de la vela, y otros factores.
+      </p>
+      <p>
+      Si hay nubes presentes (que fortalecen la ascendencia), el techo térmico estará por encima de esa altitud, pero no se puede volar sino hasta la base de las nubes.
+      </p>
+      <p>
+      A veces, esta capa límite no se forma por térmicas, pero por la turbulencia. En este caso, es inviable para volar. (Parámetro "Térmicas &gt; flotabilidad / cizalla")
+      </p>
+    help_cfrach: |-
+      <h3>Nubes de gran altitud</h3>
+    help_cfracm: |-
+      <h3>Nubes de media altitud</h3>
+    help_cfracl: |-
+      <h3>Nubes de baja altitud</h3>
+    help_tc2: |-
+      <h3>Temperatura a 2m del suelo</h3>
+      <p>
+      La temperatura a 2 m del suelo.
+      </p>
+      <p>
+      Este es un parámetro considerado muy fiable. Por lo tanto, se puede utilizar para verificar la validez de los pronósticos. Si la temperatura es muy diferente de lo que se anunció, ¡cuidado!
+      </p>
+    help_ter: |-
+      <h3> Topografía del modelo </h3>
+      <p>
+      El relieve, como se ve por el modelo meteorológico.
+      </p>
+      <p>
+      Tenga en cuenta que se ha limitado la resolución, por lo que no puede tener en cuenta todos los detalles. Por lo tanto, en todos los casos, estas previsiones son para ser utilizado como referencia en un orden de magnitud, no como valores absolutos.
+      </p>
+    help_windsfc: |-
+      <h3>Viento en superficie</h3>
+
+      <p>El viento a unos 10 metros por encima del suelo.</p>
+    windsfc_label: Viento en superficie
+    rainc_label: Lluvia de cúmulos
+    rainnc_label: Lluvia no de cúmulos
+    raintot_label: Lluvia
+    help_rainc: |-
+      <h3>Lluvia de cúmulos</h3>
+
+      <p>Lluvia de cúmulos</p>
+      <p>Acumulada durante la última hora.</p>
+    help_rainnc: |-
+      <h3>Lluvia no de cúmulos</h3>
+
+      <p> La lluvia no viene cúmulos. </p>
+      <p> Acumulada durante la última hora </p>
+    help_raintot: |-
+      <h3> Lluvia acumulada la última hora </h3>
+
+      <p> Toda la lluvia, cualquiera sea su origen </p>
+      <p> (acumulado durante la hora anterior) </p>
+    rain: Lluvia

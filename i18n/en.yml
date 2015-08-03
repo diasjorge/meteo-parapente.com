@@ -1,0 +1,179 @@
+en:
+  index:
+    titre: Soaring Weather forecasts. - meteo-parapente.com
+    chargement: Loading ...
+    header_titre: Soaring Weather forecasts. - <i>Experimental</i>
+    attrib_osm: maps data &copy; <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap's
+      contributors</a>, licenced under <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+      target="_blank">CC BY-SA</a>
+    interpolation: Interpolate
+    pas_encore_dispo: Sorry, this feature is still not available.
+    daltonien: Color-Blind
+    transparence_couche: 'Opacity for layer :'
+    meteo: Weather
+    relief: Topo
+    geo: Places
+    instabilite: Instability
+    vent_vs_alti: Wind / Alti
+    emagramme: Sounding
+    aide: Help
+    avis: Feedback
+    infos_run: RASP (WRF-ARW) XXkm forecast, Valid <span id="infos-date">...</span>,
+      run <span id="infos-run">...</span>
+    infos_partenaires: 'Data from <a href="http://rasp-france.org" target="_blank">RASP
+      France</a> non-profit organization, thanks to our partners  :'
+    infos_reutil: <a href="http://rasp-france.org/utiliser-les-donnees" target="_blank">Weather
+      data is freely available</a> under Creative Commons licence
+  js:
+    heure_locale: French Local time
+    pas_encore_dispo: This feature is still not available
+    erreur_produite: An error has occured !
+    lundi: Monday
+    mardi: Tuesday
+    mercredi: Wednesday
+    jeudi: Thursday
+    vendredi: Friday
+    samedi: Saturday
+    dimanche: Sunday
+    nocanvas: <p>Sorry, your bowser doesn't support the Canvas technology </p><p><a
+      href="http://en.wikipedia.org/wiki/Canvas_(HTML)" target="_blank">http://en.wikipedia.org/wiki/Canvas_(HTML)</a></p><p>You
+      need to upgrade to Google Chrome, Mozilla Firefox, or Internet Explorer 9</p>
+    metres: meters
+    sol: ground
+    mer: sea
+    sans_unite: no<br>unit
+    recherche: Looking for
+    recherche_que_france: Actually, the search function will only find french places.
+    decos_ffvl: FFVL Take Offs
+    atterros_ffvl: FFVL Landings
+    aerodromes: Aerodromes
+    geographie: Geography
+    pas_resultats: Nothing found
+    source_donnees_rech: Data comes from
+    legende_manquante: Missing caption for this parameter.
+    click_a_point: Click a point on the map to display more details.
+    chargement_echoue: Error while loading data
+    thermiques: Thermals
+    vent: Wind
+    couche_conv: Boundary Layer
+    nebulosite: Clouds
+    divers: Misc.
+    wstar_label: Thermal Updrafts Strenght
+    bsratio_label: Buoyancy/Shear Ratio
+    windblavg_label: Averaged wind in the BL
+    windbltop_label: BL Top Wind
+    blwindshear_label: BL vertical Wind Shear
+    wblmaxmin_label: Max Vertical Motion
+    pblh_label: BL Depth
+    pbltop_label: BL Top Altitude
+    cfrach_label: High Altitude Clouds
+    cfracm_label: Medium Altitude Clouds
+    cfracl_label: Low Altitude Clouds
+    tc2_label: 2m Temperature
+    ter_label: Model Topography
+    help_wstar: |-
+      <h3>Thermal Updraft Velocity (W*)</h3>
+      <p>Average dry thermal updraft strength near mid-BL height.</p>
+
+      <p>Subtract glider descent rate to get average vario reading for cloudless thermals.</p>
+
+      <p>Updraft strengths will be stronger than this forecast if convective clouds are present, since cloud condensation adds buoyancy aloft (i.e. this neglects cloudsuck). </p>
+
+      <p>W* depends upon both the surface heating and the BL depth</p>
+    help_bsratio: |-
+      <h3>Buoyancy/Shear Ratio</h3>
+
+      <p>Dry thermals may be broken up by vertical wind shear (i.e. wind changing with height) and unworkable if B/S ratio is 5 or less.  [Though hang-gliders can soar with smaller B/S values than can sailplanes.]</p>
+      <p> If convective clouds are present, the actual B/S ratio will be larger than calculated here due to the neglect of 'cloudsuck'.</p>
+    help_windblavg: |-
+      <h3>Boundary Layer Average Wind</h3>
+
+      <p>The speed and direction of the vector-averaged wind in the BL.</p>
+
+      <p>This prediction can be misleading if there is a large change in wind direction through the BL (for a complex wind profile, no single number is an adequate descriptor!).</p>
+    help_windbltop: |-
+      <h3>Wind at BL Top</h3>
+
+      <p>The speed and direction of the wind at the top of the BL.</p>
+    help_blwindshear: |-
+      <h3>BL Vertical Wind Shear</h3>
+
+      <p>The vertical change in wind through the BL, specifically the magnitude of the vector wind difference between the top and bottom of the BL. </p>
+
+      <p> Note that this represents vertical wind shear and does not indicate so-called 'shear lines' (which are horizontal changes of wind speed/direction).</p>
+    help_wblmaxmin: |-
+      <h3>BL Max Up/Down motion (convergence)</h3>
+
+      <p>Maximum grid-area-averaged extensive upward or downward motion within the BL as created by horizontal wind convergence.</p>
+
+      <p>Positive convergence is associated with local small-scale convergence lines (often called 'shear lines' by pilots, which are horizontal changes of wind speed/direction) - however, the actual size of such features is much smaller than can be resolved by the model so only stronger ones will be forecast and their predictions are subject to much error. If CAPE is also large, thunderstorms can be triggered.</p>
+
+      <p>Negative convergence (divergence) produces subsiding vertical motion, creating low-level inversions which limit thermalling heights.  This parameter can be noisy, so users should be wary. </p>
+    help_pblh: |-
+      <h3>Primary Boundary Layer Depth</h3>
+
+      <p>Depth of the layer mixed by thermals or (vertical) wind shear.</p>
+
+      <p>This parameter can be useful in determining which flight direction allows better thermalling conditions when average surface elevations vary greatly in differing directions. </p>
+
+      <p>(But the same cautions mentioned under Height of BL Top also apply.) </p>
+
+      <p>It is also an important determinant of thermals strength (as is the Surface Heating)</p>
+    help_pbltop: |-
+      <h3>Primary Boundary Layer Top</h3>
+
+      <p>Height of the top of the mixing layer, which for thermal convection is the average top of a dry thermal.</p>
+
+      <p>Over flat terrain, maximum thermalling heights will be lower due to the glider descent rate and other factors.</p>
+
+      <p> In the presence of clouds (which release additional buoyancy aloft, creating cloudsuck) the updraft top will be above this forecast, but the maximum thermalling height will then be limited by the cloud base.</p>
+
+      <p>Further, when the mixing results from shear turbulence rather than thermal mixing this parameter is not useful for glider flying. </p>
+
+      <p>NB: this BL Top is not the height where the Thermal Index (TI) is zero, which is a criteria used by many simple determinations of the BL top - instead, the RASP BL Top uses a more sophisticated BL Top criteria based on turbulent fluxes</p>
+    help_cfrach: |
+      <h3>High altitude Clouds</h3>
+    help_cfracm: "<h3>Medium altitude clouds</h3>"
+    help_cfracl: "<h3>Low altitude clouds</h3>"
+    help_tc2: |-
+      <h3>2m temperature</h3>
+
+        <p>
+          Temperature, 2 meters above the ground
+        </p>
+        <p>
+         This parameter should be very reliable. So, it could be used to verify model accuracy.
+        </p>
+    help_ter: |-
+      <h3>Model topography</h3>
+
+        <p>
+          Terrain, as it is seen by the model.
+        </p>
+        <p>
+         The grid resolution is 2.5km.
+        </p>
+    help_windsfc: |-
+      <h3>Surface Wind</h3>
+
+      <p>Wind, about 10 meters above the ground.</p>
+    windsfc_label: Surface Wind
+    rainc_label: Rain from cumulus
+    rainnc_label: Rain not from cumulus
+    raintot_label: Rain
+    help_rainc: |-
+      <h3>Rain from cumulus</h3>
+
+      <p>Rain from cumulus clouds</p>
+      <p>(accumulated over the last hour)</p>
+    help_rainnc: |-
+      <h3>Rain not from cumulus</h3>
+
+      <p>Rain coming from everything but cumulus clouds</p>
+      <p>(accumulated over the last hour)</p>
+    help_raintot: |-
+      <h3>Rain</h3>
+
+      <p>All of the rain, whatever its origin</p>
+      <p>accumulated over the last hour</p>
+    rain: Rain
