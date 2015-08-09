@@ -1,0 +1,234 @@
+fr:
+  index:
+    titre: Prévisions météo pour le Vol Libre - meteo-parapente.com
+    seo_h1: 'Météo-parapente.com - Météo pour le vol libre : parapente, deltaplanne.'
+    seo_txt: Météo-parapente.com est un site météo gratuit pour le vol libre et le
+      parapente. Grace à l'association RASP France, qui utilisant le modèle RASP (regional
+      atmospheric soaring prediction), nous vous donnons une prévision des ascendances
+      thermiques, prévision du plafond, des émagrammes pour le parapente.
+    chargement: Chargement de l'application ...
+    header_titre: Prévisions météo pour le Vol Libre - <i>Expérimental</i>
+    attrib_osm: données géographiques &copy; <a href="http://www.openstreetmap.org/"
+      target="_blank">les contributeurs d'OpenStreetMap</a>, licence <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+      target="_blank">CC BY-SA</a>
+    interpolation: Interpolation
+    pas_encore_dispo: Fonction pas encore disponible. Désolé.
+    daltonien: Daltonien
+    transparence_couche: Transparence de la couche
+    meteo: Météo
+    relief: Relief
+    geo: Géo
+    instabilite: Instabilité
+    vent_vs_alti: Vent / Alti
+    emagramme: Emagramme
+    bulletin: Bulletin
+    aide: Aide
+    avis: Votre Avis
+    infos_run: Prévisions pour le <span id="infos-date">...</span>, Modèle RASP (WRF-ARW)
+      XXkm, run <span id="infos-run">...</span>
+    infos_partenaires: 'Données fournies par l''association <a href="http://rasp-france.org"
+      target="_blank">RASP France</a> grâce à ses partenaires :'
+    infos_reutil: <a href="http://rasp-france.org/utiliser-les-donnees" target="_blank">Réutilisation
+      des données</a> autorisée, sous licence Creative Commons
+  js:
+    heure_locale: Heure Française
+    pas_encore_dispo: Fonction pas encore disponible.
+    erreur_produite: Une erreur s'est produite !
+    lundi: Lundi
+    mardi: Mardi
+    mercredi: Mercredi
+    jeudi: Jeudi
+    vendredi: Vendredi
+    samedi: Samedi
+    dimanche: Dimanche
+    nocanvas: <p>Désolé, votre navigateur ne sait pas afficher la technologie "canvas"</p><p><a
+      href="http://fr.wikipedia.org/wiki/Canvas_(HTML)" target="_blank">http://fr.wikipedia.org/wiki/Canvas_(HTML)</a></p><p>Il
+      faut une version de Internet Explorer >= 9</p>
+    metres: mètres
+    sol: sol
+    mer: mer
+    sans_unite: sans<br>unité
+    recherche: Recherche
+    recherche_que_france: Pour l\'instant, la recherche est réstreinte à la France.
+    decos_ffvl: Décollages FFVL
+    atterros_ffvl: Attérros FFVL
+    aerodromes: Aérodromes
+    geographie: Géographie
+    pas_resultats: Pas de résultats
+    source_donnees_rech: Sources des données
+    legende_manquante: Légende manquante pour ce paramètre.
+    click_a_point: Cliquez d'abord un point sur la carte pour afficher les détails.
+    chargement_echoue: Le chargement des données a échoué
+    thermiques: Thermiques
+    vent: Vent
+    couche_conv: Couche Convective
+    nebulosite: Nébulosité
+    divers: Divers
+    wstar_label: Vitesse Moyenne Thermiques
+    bsratio_label: Flotabilité/Cisaillement
+    windblavg_label: Moyenne Vent Couche Conv.
+    windbltop_label: Vent Sommet Couche Conv
+    blwindshear_label: Cisaillement Vertical
+    wblmaxmin_label: Mouvements Verticaux
+    pblh_label: Epaisseur Couche Convective
+    pbltop_label: Altitude Plafond Couche Conv
+    cfrach_label: Couverture Haute
+    cfracm_label: Couverture Moyenne
+    cfracl_label: Couverture Basse
+    tc2_label: Température à 2m
+    ter_label: Topographie modèle
+    help_wstar: |-
+      <h3>Vitesse moyenne des thermiques</h3>
+
+        <p>
+          Ascendance thermique moyenne.
+        </p>
+        <p>
+          On parle ici de thermiques purs, secs, en l'abscence de nuages.
+          Il faut soustraire le taux de chute de votre voile pour avoir la vitesse "vario".
+        </p>
+        <p>
+          Si des nuages convectifs sont présents, les ascendances seront plus fortes, car la condensation du nuage amplifie l'ascendance.
+        </p>
+        <p>
+          Remarque : La grille du modèle fait 2.5km. Elle ne peut donc pas prévoir le gros thermique de la ferme au père Bertrand... Lorsque ça monte <b>partout</b> à 2 ou 3m/s, c'est fort. A certains endroits, il y aura surement du 5 ou plus sur votre vario. Ce paramètre doit servir d'indicateur, et non pas de valeur absolue.
+        </p>
+    help_bsratio: |2-
+        <h3>Ratio Flotabilité/Cisaillement</h3>
+
+        <p>
+          Parfois, le vent n'est pas homogène dans la couche convective.
+          Se produit un effet de cisaillement. Ce phénomène déforme les "colonnes" de thermiques, les machouille, les découpe en petits morceaux... Rendant ainsi les ascendances pénibles, voir impossible à exploiter.
+        </p>
+        <p>
+          Ce paramètre est le ratio entre la vitesse des thermiques et l'amplitude du cisaillement.
+          C'est une valeur empirique, qui nous permet de déterminer la forme des thermiques. A chacun de déterminer sa limite, en fonction de  de ce qu'il recherche et de son niveau de pilotage. Vous pouvez prendre 5 comme étant la valeur de référence, en dessous de laquelle les thermiques seront hachés et difficilement exploitables.
+        </p>
+        <p>
+          Etant indexé sur la vitesse moyenne des thermiques (cf carte précédente), il souffre des mêmes limitations. Une ascendance plus forte entrainera un ratio supérieur
+        </p>
+    help_windblavg: |2-
+       <h3>Moyenne du vent dans la couche convective</h3>
+
+        <p>
+        On prends la couche convective, et on fait la moyenne (vectorielle) du vent à toute les altitudes. <b>Ce n'est PAS le vent au sol. C'est le vent "en l'air".</b>
+        </p>
+        <p>
+        Si des vents trop différents sont présent dans la CC, cette indication peut être faussée. Dans ce cas, reportez-vous sur le graph "Vent vs Altitude", pour mieux comprendre la répartition dans et au dessus de la couche convective.
+        </p>
+    help_windbltop: |2-
+        <h3>Vent au sommet de la couche convective</h3>
+
+        <p>
+        Vent au sommet de la couche convective.
+        </p>
+        <p>Il est souvent différent du vent que vous pouvez ressentir au sol ou en vol.
+        <p>Voir le graph "Vent vs Altitude", pour mieux comprendre la répartition dans et au dessus de la couche convective.
+        </p>
+    help_blwindshear: |-
+      <h3>Cisaillement du vent, dans la CC.</h3>
+
+        <p>
+        Parfois, le vent n'est pas homogène dans la couche convective.
+        Ce paramètre calcule l'amplitude des vitesses du vent, entre les différentes altitudes de la couche convective.
+        </p>
+        <p>
+        Cela nous permet de détecter un éventuel cisaillement. C'est directement visible dans le graph "Vent vs Altitude". Aussi, plus le vent moyen sera fort, plus ces différences peuvent être importantes.
+        </p>
+        <p>
+        Ce phénomène de cisaillement a une influence sur la qualité des thermiques. (cf "Thermiques&gt;Flotabilité/Cisaillement")
+        </p>
+    help_wblmaxmin: |2-
+        <h3>Mouvements verticaux dans la CC (convergence).</h3>
+
+        <p>
+        Amplitude des mouvements verticaux dans la couche convective.
+        C'est local et relativement dificile à prévoir avec beaucoup de précision. Le paramètre est bruité.
+        </p>
+        <p>
+        Ce phénomène est notamment créé par la convergence des vents horizontaux
+        </p>
+        <p>
+        Une convergence et un CAPE élevés, peuvent déclencher des orages.
+        </p>
+        <p>
+        Une convergence négative (divergence) produit un un mouvement vertical persistant, créant des inversions basses, qui vont limiter le plafond des thermiques.
+        </p>
+        Dans certains cas, on peut y voir apparaitre la brise de mer.
+        </p>
+    help_pblh: |-
+      <h3>Epaisseur de la couche convective.</h3>
+
+        <p>
+        C'est la zone dans laquelle les échanges thermiques avec le sol se produisent.
+        Plus les thermiques sont puissants, plus la couche convective va être épaisse.
+        </p>
+        <p>
+        Vous remarquerez dans la vue "Vent vs Altitude", que le vent est généralement différent dans cette zone (représentée en jaune).
+        </p>
+    help_pbltop: |2-
+        <h3>Plafond de la couche convective.</h3>
+
+        <p>
+        Altitude plafond de la couche convective. Correspond au plafond moyen des thermiques purs.
+        </p>
+        <p>
+        Au dessus d'un terrain plat, vous ne pourrez pas enrouler jusqu'à cette altitude, à cause du taux de chute de votre aile, et d'autres facteurs.
+        </p>
+        <p>
+        Si des nuages sont présents (qui renforcent l'ascendance), le plafond des thermiques sera dessus de cette altitude, mais vous ne pourrez voler que jusqu'à la base des nuages.
+        </p>
+        <p>
+        Parfois, cette couche limite n'est pas formée par les thermiques, mais par de la turbulence. Dans ce cas précis, c'est inexploitable pour voler. (le paramètre "Thermiques &gt; Flotabilité/Cisaillement" nous l'indique)
+        </p>
+    help_cfrach: |2-
+        <h3>Couverture Nuageuse étage Haut</h3>
+
+        <p>
+          Nuages de hautes altitudes
+        </p>
+    help_cfracm: |2
+        <h3>Couverture Nuageuse étage Moyen</h3>
+    help_cfracl: "<h3>Couverture nuageuse étage bas</h3>"
+    help_tc2: |-
+      <h3>Température à 2m sol</h3>
+
+        <p>
+          La température à 2m du sol.
+        </p>
+        <p>C'est un paramètre réputé très fiable. Il peut donc servir à vérifier la validité des prévisions. Si la température est très différente de ce qui a été annoncé, méfiance !
+        </p>
+    help_ter: |-
+      <h3>Topographie du modèle</h3>
+
+        <p>
+          Le relief, tel que vu par le modèle météo.
+        </p>
+        <p>
+          On remarquera que celui-ci a une résolution limitée, et ne peut donc pas prendre en compte toutes les aspérités locales. C'est pourquoi, dans tous les cas, ces prévisions sont à utiliser en tant qu'ordre de grandeur, et non pas de valeurs absolues.
+        </p>
+    help_windsfc: |-
+      <h3>Vent au sol</h3>
+
+      <p>Le vent environ 10m au dessus du sol.</p>
+    windsfc_label: Vent au sol
+    rainc_label: Pluie Cumulus
+    rainnc_label: Pluie pas cumulus
+    raintot_label: Pluie
+    help_rainc: |-
+      <h3>Pluie des cumulus</h3>
+
+      <p>Pluie des cumulus</p>
+      <p>Accumulée sur l'heure précédente.</p>
+    help_rainnc: |-
+      <h3>Pluie non convective</h3>
+
+      <p>La pluie qui ne vient pas des cumulus.</p>
+      <p>accumulée sur l'heure précédente</p>
+    help_raintot: |-
+      <h3>Pluie accumulée la dernière heure</h3>
+
+      <p>L'ensemble de la pluie, quelque soit son origine</p>
+
+      <p>(accumulée sur l'heure précédente)</p>
+    rain: Précipitations
