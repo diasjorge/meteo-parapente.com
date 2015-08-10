@@ -2,10 +2,12 @@ require 'yaml'
 require 'sqlite3'
 require 'fileutils'
 
-FileUtils.rm_f "i18n.db"
+db_file = File.expand_path("../lib/i18n.sqlite3")
+
+FileUtils.rm_f db_file
 
 # Open a database
-db = SQLite3::Database.new "i18n.db"
+db = SQLite3::Database.new db_file
 
 db.execute <<-SQL
 CREATE TABLE i18n (
