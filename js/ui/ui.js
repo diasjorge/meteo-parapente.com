@@ -462,9 +462,9 @@ $(document).ready(function () {
 
     // init lang
     //var langs = ["fr","en","nl","de","it","es","cat"];
-    var langs = ["fr","en"];
-    
-    if (lang != 'fr' && lang != 'en') {
+    var langs = ["fr","en","es"];
+
+    if (langs.indexOf(lang) == -1) {
       alert(lang.toUpperCase()+' translation is still incomplete. Could you help me translate ?');
     }
     
